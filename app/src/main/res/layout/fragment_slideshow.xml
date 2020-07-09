@@ -6,17 +6,30 @@
     android:layout_height="match_parent"
     tools:context="ui.slideshow.SlideshowFragment">
 
+    <VideoView
+        android:id="@+id/vv"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="80dp"
+        android:clickable="false"
+        android:elevation="9dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/iv"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="72dp"
         android:alpha="1"
-        android:elevation="7dp"
         android:background="@drawable/scottpilgrimgx"
         android:backgroundTint="#C1C1C1"
         android:backgroundTintMode="multiply"
+        android:clickable="true"
+        android:elevation="7dp"
         android:foregroundTint="#FFFFFF"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,22 +112,6 @@
         android:text="En Desarrollo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:hint="ACA"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

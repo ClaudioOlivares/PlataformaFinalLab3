@@ -17,7 +17,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editText2"
+        android:id="@+id/etPassLogin"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginBottom="152dp"
@@ -34,9 +34,10 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassLogin2"
             android:layout_width="250dp"
-            android:layout_height="50dp"
 
+            android:layout_height="50dp"
             android:background="@drawable/bg_transparent"
             android:textColor="#F1F1F1"
             android:textColorHighlight="#FFFFFF"
@@ -47,7 +48,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
 
-        android:id="@+id/editText"
+        android:id="@+id/etEmailLogin"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:fontFamily="@font/roboto"
@@ -55,13 +56,14 @@
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        app:layout_constraintBottom_toTopOf="@+id/etPassLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEmailLogin2"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:background="@drawable/bg_transparent"
@@ -97,7 +99,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/etPassLogin"
         android:onClick="logear"
         app:layout_constraintVertical_bias="0.417" />
 
