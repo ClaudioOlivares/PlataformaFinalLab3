@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.plataformafinallab3.R;
@@ -99,7 +98,7 @@ int position;
         Uri uri = Uri.parse("android.resource://"
                 + getPackageName()
                 + "/"
-                + R.raw.fondoapptest2
+                + R.raw.proyectosinttulo32323
 
         );
 

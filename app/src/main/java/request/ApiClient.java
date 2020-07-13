@@ -16,10 +16,18 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public class ApiClient {
+    public ApiClient()
+    {
+
+    }
 
     private static final String PATH="http://192.168.0.104:45455/api/";
+
+    private static final String PATHRECURSOS = "http://192.168.0.104:45455/";
+
     private static  MyApiInterface myApiInteface;
 
 
@@ -46,9 +54,16 @@ public class ApiClient {
 
             @GET("Proyecto")
             Call<List<Proyecto>> TraerProyectosUsuario(@Header("Authorization") String token);
+
+            @GET("Proyecto/{id}")
+            Call<List<Proyecto>> TraerProyecto(@Header("Authorization") String token,@Path("id")int id);
     }
 
     public static String getPATH() {
         return PATH;
+    }
+
+    public static String getPATHRECURSOS() {
+        return PATHRECURSOS;
     }
 }

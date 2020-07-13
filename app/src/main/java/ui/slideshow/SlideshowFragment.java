@@ -40,7 +40,6 @@ public class SlideshowFragment extends Fragment {
         );
         vv.setVideoURI(uri);
 
-        vv.start();
 
 
         vv.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {

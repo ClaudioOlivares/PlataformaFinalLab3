@@ -9,9 +9,9 @@ public class Proyecto {
     private String titulo, genero, status, plataforma;
     private String fechaCreacion;
     private int idUser;
-    private String portada, video;
+    private String portada, video, textoResumen, textoCompleto, videoTrailer;
 
-    public Proyecto(int idProyecto, String titulo, String genero, String status, String plataforma, String fechaCreacion, int idUser, String portada, String video) {
+    public Proyecto(int idProyecto, String titulo, String genero, String status, String plataforma, String fechaCreacion, int idUser, String portada, String video, String videoTrailer, String textoResumen, String textoCompleto) {
         this.idProyecto = idProyecto;
         this.titulo = titulo;
         this.genero = genero;
@@ -21,6 +21,9 @@ public class Proyecto {
         this.idUser = idUser;
         this.portada = portada;
         this.video = video;
+        this.textoResumen = textoResumen;
+        this.textoCompleto = textoCompleto;
+        this.videoTrailer = videoTrailer;
     }
 
     public Proyecto() {
@@ -92,6 +95,30 @@ public class Proyecto {
 
     public String getVideo() {
         return video;
+    }
+
+    public String getTextoResumen() {
+        return textoResumen;
+    }
+
+    public void setTextoResumen(String textoResumen) {
+        this.textoResumen = textoResumen;
+    }
+
+    public String getTextoCompleto() {
+        return textoCompleto;
+    }
+
+    public void setTextoCompleto(String textoCompleto) {
+        this.textoCompleto = textoCompleto;
+    }
+
+    public String getVideoTrailer() {
+        return videoTrailer;
+    }
+
+    public void setVideoTrailer(String videoTrailer) {
+        this.videoTrailer = videoTrailer;
     }
 
     public void setVideo(String video) {
