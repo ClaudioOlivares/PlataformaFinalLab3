@@ -17,9 +17,9 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="ui.gallery.GalleryFragment"
+        android:name="ui.miperfil.MiPerfilFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_miperfil" />
 
     <fragment
         android:id="@+id/nav_slideshow"

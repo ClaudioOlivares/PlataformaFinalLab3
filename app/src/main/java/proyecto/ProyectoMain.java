@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.MediaController;
@@ -37,6 +38,7 @@ public class ProyectoMain extends Fragment {
     private String urlImagen;
     private VideoView vv;
     private String urlVideo;
+
     private EditText textoCompleto,titulo,textoResumen;
     private ApiClient ap;
 
@@ -85,6 +87,8 @@ public class ProyectoMain extends Fragment {
         vv = root.findViewById(R.id.vvProyectoMain);
 
         iv = root.findViewById(R.id.ivPortadaProyectoMain);
+
+
     }
 
     public void generadorImagen(String url)
