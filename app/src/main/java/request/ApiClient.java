@@ -8,16 +8,19 @@ import com.google.gson.GsonBuilder;
 import java.util.List;
 
 import models.CheckPerfilView;
+import models.EditPerfilView;
 import models.LoginView;
 import models.Proyecto;
 import models.Usuario;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public class ApiClient {
@@ -40,7 +43,7 @@ public class ApiClient {
                 .baseUrl(PATH)
 
                 .addConverterFactory(GsonConverterFactory.create(gson))
-
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
 
         myApiInteface=retrofit.create(MyApiInterface.class);
@@ -60,7 +63,10 @@ public class ApiClient {
             Call <Usuario> traerUsuarioLogeado(@Header("Authorization") String token);
 
             @POST("Usuario/checkear")
-            Call<String> checkearPerfil( @Body CheckPerfilView email, @Header("Authorization") String token);
+            Call<String> checkearPerfil(@Body CheckPerfilView email, @Header("Authorization") String token);
+
+            @PUT("Usuario/actualizar")
+            Call<Usuario> actualizarPerfil(@Body Usuario perfil,@Header("Authorization") String token);
 
         //------------------------------------------------PROYECTO------------------------------------------------------------------
 

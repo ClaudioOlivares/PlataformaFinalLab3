@@ -1,16 +1,22 @@
 package ui.miperfil;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.util.Base64;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.navigation.Navigation;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 
 import models.CheckPerfilView;
+import models.EditPerfilView;
 import models.Proyecto;
 import models.Usuario;
 import request.ApiClient;
@@ -27,6 +33,9 @@ public class MiPerfilViewModel extends ViewModel {
 
     private MutableLiveData<String> stringMutableLiveData;
 
+    private MutableLiveData<String> respuestaMutableLiveData;
+
+    private MutableLiveData<String> imageMutableLiveData;
 
     public MiPerfilViewModel()
     {
@@ -50,6 +59,26 @@ public class MiPerfilViewModel extends ViewModel {
         }
 
         return  stringMutableLiveData;
+    }
+
+    public LiveData<String> getRespuestaMutableLiveData()
+    {
+        if(respuestaMutableLiveData == null)
+        {
+            respuestaMutableLiveData = new MutableLiveData<>();
+        }
+
+        return  respuestaMutableLiveData;
+    }
+
+    public LiveData<String> getImageMutableLiveData()
+    {
+        if(imageMutableLiveData == null)
+        {
+            imageMutableLiveData = new MutableLiveData<>();
+        }
+
+        return  imageMutableLiveData;
     }
 
     public void traerusuarioLogeado(final Context ctx)
@@ -103,7 +132,7 @@ public class MiPerfilViewModel extends ViewModel {
             {
                 if(response.isSuccessful())
                 {
-                    stringMutableLiveData.postValue(response.body());
+                   stringMutableLiveData.postValue(response.body());
                 }
                 else
                 {
@@ -124,5 +153,55 @@ public class MiPerfilViewModel extends ViewModel {
                 Toast.makeText(ctx, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void actualizarPerfil(EditText nick, EditText nombre, EditText apellido, EditText email, EditText nacionalidad,String imgBytes,final Context ctx)
+    {
+        String token = "Bearer " + sp.leerToken(ctx);
+
+        Usuario u = new Usuario(0,nick.getText().toString(),nombre.getText().toString(),
+                apellido.getText().toString(),email.getText().toString(),nacionalidad.getText().toString(),"clave",imgBytes);
+
+        Call<Usuario> res = ApiClient.getMyApiClient().actualizarPerfil(u, token);
+
+        res.enqueue(new Callback<Usuario>() {
+            @Override
+            public void onResponse(Call<Usuario> call, Response<Usuario> response)
+            {
+                if(response.isSuccessful())
+                {
+                    respuestaMutableLiveData.setValue("Datos Actualizados");
+                }
+                else
+                {
+                    try
+                    {
+                        Toast.makeText(ctx, response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                    } catch (IOException e)
+                    {
+                        Toast.makeText(ctx, e.getMessage(), Toast.LENGTH_SHORT).show();;
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Usuario> call, Throwable t)
+            {
+                Toast.makeText(ctx, t.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+    }
+
+    public void imgto64(Bitmap bmp)
+    {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
+        bmp.compress(Bitmap.CompressFormat.JPEG,100, byteArrayOutputStream);
+
+        byte[] imgBytes = byteArrayOutputStream.toByteArray();
+
+        imageMutableLiveData.postValue(Base64.encodeToString(imgBytes,Base64.DEFAULT));
     }
 }

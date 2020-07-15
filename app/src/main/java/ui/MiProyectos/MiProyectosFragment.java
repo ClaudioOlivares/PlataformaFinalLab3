@@ -189,7 +189,9 @@ public class MiProyectosFragment extends Fragment {
                  @Override
                  public void onClick(View v) {
                      Bundle bundle = new Bundle();
+
                      bundle.putInt("id",proyecto.getIdProyecto());
+
                      Navigation.findNavController(v).navigate(R.id.proyectoMain,bundle);
 
                  }
