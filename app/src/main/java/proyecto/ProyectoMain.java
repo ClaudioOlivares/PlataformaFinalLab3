@@ -8,6 +8,8 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -21,10 +23,20 @@ import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.example.plataformafinallab3.R;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import models.ImagenProyecto;
 import models.Proyecto;
 import request.ApiClient;
 
@@ -38,9 +50,14 @@ public class ProyectoMain extends Fragment {
     private String urlImagen;
     private VideoView vv;
     private String urlVideo;
-
+    private List<String> urlimgsProyecto = new ArrayList<>();;
+    private CarouselView carouselView;
     private EditText textoCompleto,titulo,textoResumen;
     private ApiClient ap;
+
+    public ProyectoMain() {
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
@@ -55,26 +72,49 @@ public class ProyectoMain extends Fragment {
 
         vm.traerProyecto(getContext(),id);
 
-        vm.getProyectoMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Proyecto>()
-        {
-            @Override
-            public void onChanged(Proyecto proyecto)
-            {
-                textoCompleto.setText(proyecto.getTextoCompleto());
+       vm.getProyectoMutableLiveData().observe(getViewLifecycleOwner(), new Observer<List<ImagenProyecto>>() {
+           @Override
+           public void onChanged(final List<ImagenProyecto> imagenProyectos)
+           {
+               textoCompleto.setText(imagenProyectos.get(0).getProyecto().getTextoCompleto());
 
-                titulo.setText(proyecto.getTitulo());
+               titulo.setText(imagenProyectos.get(0).getProyecto().getTitulo());
 
-                textoResumen.setText(proyecto.getTextoResumen());
+               textoResumen.setText(imagenProyectos.get(0).getProyecto().getTextoResumen());
 
-                generadorImagen(proyecto.getPortada());
+               generadorImagen(imagenProyectos.get(0).getProyecto().getPortada());
 
-                generadorVideo(proyecto.getVideoTrailer());
+               generadorVideo(imagenProyectos.get(0).getProyecto().getVideoTrailer());
 
-            }
-        });
+               for (ImagenProyecto item:imagenProyectos)
+               {
+                   String pathCompleto = ap.getPATHRECURSOS() + item.getUrl();
+
+                   urlimgsProyecto.add(pathCompleto);
+               }
+
+               carouselView.setImageListener(imageListener);
+
+               carouselView.setPageCount(urlimgsProyecto.size());
+
+           }
+       });
+
+
+
+
+
 
         return  root;
     }
+
+
+    ImageListener imageListener = new ImageListener() {
+        @Override
+        public void setImageForPosition(int position, ImageView imageView) {
+            Glide.with(getActivity()).load(urlimgsProyecto.get(position)).diskCacheStrategy(DiskCacheStrategy.NONE).into(imageView);
+        }
+    };
 
     public void elementosVista()
     {
@@ -87,6 +127,8 @@ public class ProyectoMain extends Fragment {
         vv = root.findViewById(R.id.vvProyectoMain);
 
         iv = root.findViewById(R.id.ivPortadaProyectoMain);
+
+        carouselView = root.findViewById(R.id.carouselView);
 
 
     }

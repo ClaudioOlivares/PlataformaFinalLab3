@@ -8,7 +8,9 @@ import com.google.gson.GsonBuilder;
 import java.util.List;
 
 import models.CheckPerfilView;
+import models.DevLog;
 import models.EditPerfilView;
+import models.ImagenProyecto;
 import models.LoginView;
 import models.Proyecto;
 import models.Usuario;
@@ -75,6 +77,17 @@ public class ApiClient {
 
             @GET("Proyecto/{id}")
             Call<Proyecto> TraerProyecto(@Header("Authorization") String token,@Path("id")int id);
+
+        //------------------------------------------------PROYECTO CON IMAGEN-------------------------------------------------------
+
+            @GET("ImagenProyecto/{id}")
+            Call<List<ImagenProyecto>> TraerProyectoImagenes(@Header("Authorization") String token, @Path("id")int id);
+
+
+            //-----------------------------------------------DEVLOG-----------------------------------------------------------------
+
+            @GET("DevLog/{id}")
+            Call<List<DevLog>> TraerDevlogs(@Header("Authorization") String token, @Path("id")int id);
     }
 
 

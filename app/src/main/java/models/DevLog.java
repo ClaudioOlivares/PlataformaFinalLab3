@@ -1,0 +1,63 @@
+package models;
+
+public class DevLog
+{
+    private int idDevlog;
+
+    private int idProyecto;
+
+    private Proyecto proyecto;
+
+    private String resumen;
+
+    private String fechaCreacion;
+
+    public DevLog(int idDevlog, int idProyecto, Proyecto proyecto, String resumen, String fechaCreacion)
+    {
+        this.idDevlog = idDevlog;
+        this.idProyecto = idProyecto;
+        this.proyecto = proyecto;
+        this.resumen = resumen;
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public int getIdDevlog() {
+        return idDevlog;
+    }
+
+    public void setIdDevlog(int idDevlog) {
+        this.idDevlog = idDevlog;
+    }
+
+    public int getIdProyecto() {
+        return idProyecto;
+    }
+
+    public void setIdProyecto(int idProyecto) {
+        this.idProyecto = idProyecto;
+    }
+
+    public Proyecto getProyecto() {
+        return proyecto;
+    }
+
+    public void setProyecto(Proyecto proyecto) {
+        this.proyecto = proyecto;
+    }
+
+    public String getResumen() {
+        return resumen;
+    }
+
+    public void setResumen(String resumen) {
+        this.resumen = resumen;
+    }
+
+    public String getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(String fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+}

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 import models.CheckPerfilView;
+import models.ImagenProyecto;
 import models.Proyecto;
 import request.ApiClient;
 import retrofit2.Call;
@@ -22,7 +23,7 @@ public class ProyectoViewModel extends ViewModel
 {
     Sharedprefs sp;
 
-    private MutableLiveData<Proyecto> proyectoMutableLiveData;
+    private MutableLiveData<List<ImagenProyecto>> proyectoMutableLiveData;
 
 
     public ProyectoViewModel()
@@ -30,7 +31,7 @@ public class ProyectoViewModel extends ViewModel
 
     }
 
-    public LiveData<Proyecto> getProyectoMutableLiveData()
+    public LiveData<List<ImagenProyecto>> getProyectoMutableLiveData()
     {
         if(proyectoMutableLiveData == null)
         {
@@ -45,12 +46,12 @@ public class ProyectoViewModel extends ViewModel
     {
         String token = "Bearer " + sp.leerToken(ctx);
 
-        final Call<Proyecto> res = ApiClient.getMyApiClient().TraerProyecto(token,id);
+        final Call<List<ImagenProyecto>> res = ApiClient.getMyApiClient().TraerProyectoImagenes(token,id);
 
-        res.enqueue(new Callback <Proyecto>()
+        res.enqueue(new Callback <List<ImagenProyecto>>()
         {
             @Override
-            public void onResponse(Call<Proyecto> call, Response<Proyecto> response)
+            public void onResponse(Call<List<ImagenProyecto>> call, Response<List<ImagenProyecto>> response)
             {
                 if(response.isSuccessful())
                 {
@@ -69,7 +70,7 @@ public class ProyectoViewModel extends ViewModel
             }
 
             @Override
-            public void onFailure(Call<Proyecto> call, Throwable t)
+            public void onFailure(Call<List<ImagenProyecto>> call, Throwable t)
             {
                 Toast.makeText(ctx, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
