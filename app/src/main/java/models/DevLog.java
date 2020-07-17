@@ -8,17 +8,31 @@ public class DevLog
 
     private Proyecto proyecto;
 
+    private String titulo;
+
     private String resumen;
 
     private String fechaCreacion;
 
-    public DevLog(int idDevlog, int idProyecto, Proyecto proyecto, String resumen, String fechaCreacion)
+    public DevLog(int idDevlog, int idProyecto, Proyecto proyecto,String titulo, String resumen, String fechaCreacion)
     {
         this.idDevlog = idDevlog;
         this.idProyecto = idProyecto;
         this.proyecto = proyecto;
+        this.titulo = titulo;
         this.resumen = resumen;
         this.fechaCreacion = fechaCreacion;
+    }
+
+    public DevLog() {
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public int getIdDevlog() {

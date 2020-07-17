@@ -30,5 +30,14 @@
         android:id="@+id/proyectoMain"
         android:name="proyecto.ProyectoMain"
         android:label="fragment_proyecto_main"
-        tools:layout="@layout/fragment_proyecto_main" />
+        tools:layout="@layout/fragment_proyecto_main" >
+        <action
+            android:id="@+id/action_proyectoMain_to_devLogMain"
+            app:destination="@id/devLogMain" />
+    </fragment>
+    <fragment
+        android:id="@+id/devLogMain"
+        android:name="devlog.DevLogMain"
+        android:label="fragment_dev_log_main"
+        tools:layout="@layout/fragment_dev_log_main" />
 </navigation>

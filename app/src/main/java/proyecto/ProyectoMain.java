@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,6 +55,7 @@ public class ProyectoMain extends Fragment {
     private CarouselView carouselView;
     private EditText textoCompleto,titulo,textoResumen;
     private ApiClient ap;
+    private Button btnDevlogs;
 
     public ProyectoMain() {
     }
@@ -69,6 +71,17 @@ public class ProyectoMain extends Fragment {
         root = inflater.inflate(R.layout.fragment_proyecto_main, container, false);
 
         elementosVista();
+
+        btnDevlogs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+
+                bundle.putInt("id",id);
+
+                Navigation.findNavController(v).navigate(R.id.devLogMain,bundle);
+            }
+        });
 
         vm.traerProyecto(getContext(),id);
 
@@ -129,6 +142,8 @@ public class ProyectoMain extends Fragment {
         iv = root.findViewById(R.id.ivPortadaProyectoMain);
 
         carouselView = root.findViewById(R.id.carouselView);
+
+        btnDevlogs = root.findViewById(R.id.btnDevLogs);
 
 
     }
