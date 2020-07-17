@@ -7,9 +7,10 @@ import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
+import DevlogItem.DevlogItemfragment;
 import models.CheckPerfilView;
 import models.DevLog;
-import models.EditPerfilView;
+import models.DevLogItem;
 import models.ImagenProyecto;
 import models.LoginView;
 import models.Proyecto;
@@ -88,6 +89,11 @@ public class ApiClient {
 
             @GET("DevLog/{id}")
             Call<List<DevLog>> TraerDevlogs(@Header("Authorization") String token, @Path("id")int id);
+
+            //-----------------------------------------------DEVLOG ITEMS------------------------------------------------------------
+
+            @GET("DevLogItem/{id}")
+            Call<List<DevLogItem>> traerDevlogsItems(@Header("Authorization") String token, @Path("id")int id);
     }
 
 

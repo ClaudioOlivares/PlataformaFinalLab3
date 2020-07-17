@@ -2,7 +2,7 @@ package models;
 
 public class DevLog
 {
-    private int idDevlog;
+    private int idDevLog;
 
     private int idProyecto;
 
@@ -16,7 +16,7 @@ public class DevLog
 
     public DevLog(int idDevlog, int idProyecto, Proyecto proyecto,String titulo, String resumen, String fechaCreacion)
     {
-        this.idDevlog = idDevlog;
+        this.idDevLog = idDevlog;
         this.idProyecto = idProyecto;
         this.proyecto = proyecto;
         this.titulo = titulo;
@@ -36,11 +36,11 @@ public class DevLog
     }
 
     public int getIdDevlog() {
-        return idDevlog;
+        return idDevLog;
     }
 
     public void setIdDevlog(int idDevlog) {
-        this.idDevlog = idDevlog;
+        this.idDevLog = idDevlog;
     }
 
     public int getIdProyecto() {

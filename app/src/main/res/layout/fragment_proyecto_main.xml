@@ -40,7 +40,7 @@
                 android:layout_marginStart="17dp"
                 android:layout_marginTop="48dp"
                 android:background="#00000000"
-                android:elevation="1dp"
+                android:elevation="10dp"
                 android:ems="10"
                 android:fontFamily="@font/montheavydemo"
                 android:inputType="text|textMultiLine"

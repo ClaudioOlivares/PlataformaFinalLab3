@@ -39,5 +39,14 @@
         android:id="@+id/devLogMain"
         android:name="devlog.DevLogMain"
         android:label="fragment_dev_log_main"
-        tools:layout="@layout/fragment_dev_log_main" />
+        tools:layout="@layout/fragment_dev_log_main" >
+        <action
+            android:id="@+id/action_devLogMain_to_devlogItem"
+            app:destination="@id/devlogItem" />
+    </fragment>
+    <fragment
+        android:id="@+id/devlogItem"
+        android:name="DevlogItem.DevlogItemfragment"
+        android:label="fragment_devlog_item"
+        tools:layout="@layout/fragment_devlog_item" />
 </navigation>

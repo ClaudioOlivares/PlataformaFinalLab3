@@ -2,20 +2,24 @@ package devlog;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BlendMode;
 import android.graphics.Canvas;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.view.menu.MenuView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +38,7 @@ import com.example.plataformafinallab3.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import DevlogItem.DevlogItemfragment;
 import models.DevLog;
 import models.Proyecto;
 import request.ApiClient;
@@ -137,18 +142,20 @@ public class DevLogMain extends Fragment {
 
             final DevLog devlog = lista.get(position);
 
+            final int iddevlog = devlog.getIdDevlog();
+
             tvTitulo.setText(devlog.getTitulo());
 
             pathCompleto =  ap.getPATHRECURSOS() + devlog.getProyecto().getPortada();
 
             Glide.with(getContext()).asBitmap().load(pathCompleto).diskCacheStrategy(DiskCacheStrategy.NONE).into(new CustomTarget<Bitmap>() {
+                @RequiresApi(api = Build.VERSION_CODES.Q)
                 @Override
                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition)
                 {
                         Bitmap bmap = toGrayscale(resource);
 
                         iv.setBackground(new BitmapDrawable(getResources(), bmap));
-
 
                 }
 
@@ -159,7 +166,18 @@ public class DevLogMain extends Fragment {
                 }
             });
 
+            iv.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    Bundle bundle = new Bundle();
 
+                    bundle.putInt("id",iddevlog);
+
+                    Navigation.findNavController(v).navigate(R.id.devlogItem,bundle);
+                }
+            });
 
 
             return  itemView;
