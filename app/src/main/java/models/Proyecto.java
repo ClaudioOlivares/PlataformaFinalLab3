@@ -9,9 +9,10 @@ public class Proyecto {
     private String titulo, genero, status, plataforma;
     private String fechaCreacion;
     private int idUser;
+    private Usuario user;
     private String portada, video, textoResumen, textoCompleto, videoTrailer;
 
-    public Proyecto(int idProyecto, String titulo, String genero, String status, String plataforma, String fechaCreacion, int idUser, String portada, String video, String videoTrailer, String textoResumen, String textoCompleto) {
+    public Proyecto(int idProyecto, String titulo, String genero, String status, String plataforma, String fechaCreacion, int idUser, String portada, String video, String videoTrailer, String textoResumen, String textoCompleto, Usuario user) {
         this.idProyecto = idProyecto;
         this.titulo = titulo;
         this.genero = genero;
@@ -24,9 +25,18 @@ public class Proyecto {
         this.textoResumen = textoResumen;
         this.textoCompleto = textoCompleto;
         this.videoTrailer = videoTrailer;
+        this.user = user;
     }
 
     public Proyecto() {
+    }
+
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
     }
 
     public int getIdProyecto() {

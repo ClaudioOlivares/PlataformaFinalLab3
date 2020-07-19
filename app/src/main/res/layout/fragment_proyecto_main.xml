@@ -2,25 +2,31 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerHorizontal="true"
-    android:layout_gravity="center"
-    tools:context="proyecto.ProyectoMain" >
+    android:focusableInTouchMode="false"
+    android:focusedByDefault="false"
+    tools:context="proyecto.ProyectoMain">
 
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="16dp"
         android:fillViewport="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/consview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true"
+            android:focusedByDefault="true">
 
             <ImageView
                 android:id="@+id/ivPortadaProyectoMain"
@@ -40,8 +46,10 @@
                 android:layout_marginStart="17dp"
                 android:layout_marginTop="48dp"
                 android:background="#00000000"
+                android:editable="false"
                 android:elevation="10dp"
                 android:ems="10"
+                android:enabled="false"
                 android:fontFamily="@font/montheavydemo"
                 android:inputType="text|textMultiLine"
                 android:textAlignment="center"
@@ -53,11 +61,13 @@
                 android:id="@+id/etTextoCompletoProyectoMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="38dp"
+                android:layout_marginTop="36dp"
                 android:background="#00000000"
 
+                android:editable="false"
                 android:elevation="1dp"
                 android:ems="10"
+                android:enabled="false"
                 android:fontFamily="@font/montheavydemo"
                 android:inputType="text|textMultiLine"
                 android:textColor="#000000"
@@ -69,17 +79,135 @@
                 android:id="@+id/etTextoResumenProyectoMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="200dp"
                 android:background="#00000000"
+                android:editable="false"
                 android:elevation="1dp"
                 android:ems="10"
+                android:enabled="false"
+
                 android:fontFamily="@font/montheavydemo"
                 android:inputType="text|textMultiLine"
-
                 android:textColor="#000000"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ivPortadaProyectoMain" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="28dp"
+                android:text="Creador :"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivPortadaProyectoMain" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:text="Genero :"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:text="Status :"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:text="Plataforma :"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+            <EditText
+                android:id="@+id/etStatusProyectoMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#00000000"
+                android:ems="10"
+                android:enabled="false"
+                android:inputType="text|textMultiLine"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:visibility="visible"
+                app:layout_constraintStart_toEndOf="@+id/textView11"
+                app:layout_constraintTop_toBottomOf="@+id/etGeneroProyectoMain" />
+
+            <EditText
+                android:id="@+id/etPlataformaProyectoMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#00000000"
+                android:ems="10"
+                android:enabled="false"
+                android:inputType="text|textMultiLine"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:visibility="visible"
+                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintTop_toBottomOf="@+id/etCreadorProyectoMain" />
+
+            <EditText
+                android:id="@+id/etCreadorProyectoMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:background="#00000000"
+                android:ems="10"
+                android:enabled="false"
+                android:inputType="text|textMultiLine"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:visibility="visible"
+                app:layout_constraintStart_toEndOf="@+id/textView8"
+                app:layout_constraintTop_toBottomOf="@+id/ivPortadaProyectoMain" />
+
+            <EditText
+                android:id="@+id/etGeneroProyectoMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#00000000"
+                android:ems="10"
+                android:enabled="false"
+                android:inputType="text|textMultiLine"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:visibility="visible"
+                app:layout_constraintStart_toEndOf="@+id/textView10"
+                app:layout_constraintTop_toBottomOf="@+id/etPlataformaProyectoMain" />
 
             <com.synnapps.carouselview.CarouselView
                 android:id="@+id/carouselView"
@@ -88,7 +216,7 @@
                 android:layout_marginTop="28dp"
                 app:fillColor="#FFFFFFFF"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+                app:layout_constraintTop_toBottomOf="@+id/frameLayout2"
                 app:pageColor="#00000000"
                 app:radius="6dp"
                 app:slideInterval="3000"
@@ -96,7 +224,7 @@
                 app:strokeWidth="1dp" />
 
             <FrameLayout
-                android:id="@+id/frameLayout"
+                android:id="@+id/frameLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
@@ -116,11 +244,51 @@
                 android:id="@+id/btnDevLogs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="172dp"
                 android:layout_marginEnd="20dp"
-                android:text="Button"
+                android:text="Devlogs"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnActualizarProyecto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="236dp"
+                android:layout_marginEnd="16dp"
+                android:text="Actualizar"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnAceptarActualizarMiProyecto"
+                android:layout_width="44dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="300dp"
+                android:layout_marginTop="8dp"
+                android:text="aceptar"
+                android:textAlignment="textStart"
+                android:textSize="8sp"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnActualizarProyecto" />
+
+            <Button
+                android:id="@+id/btnCancelarActualizarMiProyecto"
+                android:layout_width="44dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
+                android:text="Cancelar"
+                android:textAlignment="textStart"
+                android:textSize="8sp"
+                android:visibility="invisible"
+                app:layout_constraintStart_toEndOf="@+id/btnAceptarActualizarMiProyecto"
+                app:layout_constraintTop_toBottomOf="@+id/btnActualizarProyecto" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

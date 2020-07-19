@@ -169,6 +169,8 @@ public class MiPerfilFragment extends Fragment {
         btnAceptar.setVisibility(root.INVISIBLE);
 
         btnCancelar.setVisibility(root.INVISIBLE);
+
+
     }
 
     public void setearElementosUsuario(Usuario usuario)

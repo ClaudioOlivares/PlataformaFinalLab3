@@ -79,6 +79,9 @@ public class ApiClient {
             @GET("Proyecto/{id}")
             Call<Proyecto> TraerProyecto(@Header("Authorization") String token,@Path("id")int id);
 
+            @POST("Proyecto/checkear")
+            Call<String> checkearproyecto(@Header("Authorization") String token, @Body int id);
+
         //------------------------------------------------PROYECTO CON IMAGEN-------------------------------------------------------
 
             @GET("ImagenProyecto/{id}")

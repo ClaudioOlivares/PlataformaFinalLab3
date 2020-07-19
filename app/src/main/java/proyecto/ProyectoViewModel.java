@@ -25,6 +25,8 @@ public class ProyectoViewModel extends ViewModel
 
     private MutableLiveData<List<ImagenProyecto>> proyectoMutableLiveData;
 
+    private MutableLiveData<String> checkeoMutableLiveData;
+
 
     public ProyectoViewModel()
     {
@@ -38,6 +40,15 @@ public class ProyectoViewModel extends ViewModel
             proyectoMutableLiveData = new MutableLiveData<>();
         }
         return proyectoMutableLiveData;
+    }
+
+    public LiveData<String> getCheckeoMutableLiveData()
+    {
+        if(checkeoMutableLiveData == null)
+        {
+            checkeoMutableLiveData = new MutableLiveData<>();
+        }
+        return checkeoMutableLiveData;
     }
 
 
@@ -55,7 +66,14 @@ public class ProyectoViewModel extends ViewModel
             {
                 if(response.isSuccessful())
                 {
-                    proyectoMutableLiveData.setValue(response.body());
+                    if(response.body().size() != 0) 
+                    {
+                        proyectoMutableLiveData.setValue(response.body());
+                    }
+                    else
+                    {
+                        Toast.makeText(ctx, "El proyecto no contiene elementos", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else
                 {
@@ -78,7 +96,40 @@ public class ProyectoViewModel extends ViewModel
 
     }
 
+    public void checkearSiEsProyectoDelUsuario(final Context ctx, int id)
+    {
+        String token = "Bearer " + sp.leerToken(ctx);
 
+        Call<String> res = ApiClient.getMyApiClient().checkearproyecto(token,id);
+
+        res.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response)
+            {
+                if(response.isSuccessful())
+                {
+                    checkeoMutableLiveData.postValue(response.body());
+                }
+                else
+                {
+                    try
+                    {
+                        Toast.makeText(ctx, response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                    }
+                    catch (IOException e)
+                    {
+                        Toast.makeText(ctx, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t)
+            {
+                Toast.makeText(ctx, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 
 }

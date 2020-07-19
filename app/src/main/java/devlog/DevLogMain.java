@@ -28,6 +28,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -84,6 +85,7 @@ public class DevLogMain extends Fragment {
         });
 
         vm.traerDevLogs(getContext(), id);
+        Toast.makeText(getContext(), getActivity().getCurrentFocus().toString(), Toast.LENGTH_LONG).show();
 
         return root;
     }
