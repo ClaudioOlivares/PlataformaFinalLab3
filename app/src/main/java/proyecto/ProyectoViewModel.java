@@ -146,7 +146,7 @@ public class ProyectoViewModel extends ViewModel
             @Override
             public void onFailure(Call<String> call, Throwable t)
             {
-                Toast.makeText(ctx, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ctx, "", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -183,6 +183,8 @@ public class ProyectoViewModel extends ViewModel
          p.setTextoCompleto(textoCompleto.getText().toString());
 
          p.setVideoTrailer(videotrailer64);
+
+         p.setFechaCreacion(null);
 
          for (String url:imgsUrls64)
          {

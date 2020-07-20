@@ -40,6 +40,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import models.ImagenProyecto;
+import models.Proyecto;
 import request.ApiClient;
 
 
@@ -181,6 +182,19 @@ public class ProyectoMain extends Fragment {
 
         clicklistenersActualizar();
 
+        vm.getProyectoactualizadoMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Proyecto>()
+        {
+            @Override
+            public void onChanged(Proyecto proyecto)
+            {
+
+                Toast.makeText(getContext(), "Proyecto Actualizado", Toast.LENGTH_SHORT).show();
+
+                Navigation.findNavController(root).navigate(R.id.nav_home);
+
+            }
+        });
+
         return root;
     }
 
@@ -252,21 +266,13 @@ public class ProyectoMain extends Fragment {
 
         plataforma = root.findViewById(R.id.etPlataformaProyectoMain);
 
-        titulo.setFocusable(false);
-
         genero = root.findViewById(R.id.etGeneroProyectoMain);
 
         vvTrailer = root.findViewById(R.id.vvTrailerMiProyecto);
 
         vv = root.findViewById(R.id.vvProyectoMain);
 
-        vv.setFocusable(false);
-
-        vv.clearFocus();
-
         iv = root.findViewById(R.id.ivPortadaProyectoMain);
-
-        iv.setFocusable(false);
 
         carouselView = root.findViewById(R.id.carouselView);
 
@@ -284,7 +290,6 @@ public class ProyectoMain extends Fragment {
 
         btnCancelarActualizacion.setVisibility(View.INVISIBLE);
 
-       // flvideoCorto = root.findViewById(R.id.flayoutminivideo);
 
         vvTrailer.setBackgroundResource(R.color.transparentetotal);
 
@@ -464,7 +469,6 @@ public class ProyectoMain extends Fragment {
                 genero.setEnabled(true);
 
                 plataforma.setEnabled(true);
-
 
                 textoCompleto.setBackgroundResource(R.color.transparenteColor);
 
@@ -663,7 +667,9 @@ public class ProyectoMain extends Fragment {
             @Override
             public void onClick(View v)
             {
-                //--Carousel--//
+
+                //-----Carousel------//
+
                 List<String> carouselBitmapTo64 = new ArrayList<>();
 
                 for (Bitmap item: auxCarouselBitMaps)
@@ -673,24 +679,35 @@ public class ProyectoMain extends Fragment {
                     carouselBitmapTo64.add(img64);
                 }
 
-                //---Portada--//
-//                Bitmap bitmap = ((BitmapDrawable)iv.getDrawable()).getBitmap();
+                //-----Portada-----//
 
-         //       String portadaImg64 = vm.imgto64(bitmap);
 
-                //---VideoTrailer--//
+                Bitmap bitmap = ((BitmapDrawable)iv.getBackground().getCurrent()).getBitmap();
+
+                String portadaImg64 = vm.imgto64(bitmap);
+
+
+
+                //-----VideoTrailer-----//
+
+                String videoTrailer64 = null;
+
                 if(actualVideoTrailerUri != null)
                 {
-                    String videoTrailer64 = vm.videoto64(actualVideoTrailerUri,getContext());
+                    videoTrailer64 = vm.videoto64(actualVideoTrailerUri,getContext());
                 }
 
-                //--VideoCorto--//
+                //-----VideoCorto-----//
 
-                String videoCorto64;
+                String videoCorto64 = null;
+
                 if(actualVideoCortoUri != null)
                 {
                     videoCorto64 = vm.videoto64(actualVideoCortoUri, getContext());
                 }
+
+                vm.actualizarProyecto(id,titulo,genero,status,plataforma,portadaImg64,videoTrailer64,0,textoResumen,
+                        textoCompleto,videoCorto64,carouselBitmapTo64,getContext());
 
             }
 

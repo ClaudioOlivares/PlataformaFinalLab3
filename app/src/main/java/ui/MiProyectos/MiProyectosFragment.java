@@ -1,6 +1,7 @@
 package ui.MiProyectos;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,11 +17,16 @@ import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.view.menu.MenuView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.example.plataformafinallab3.R;
 import com.squareup.picasso.Picasso;
 
@@ -35,7 +41,6 @@ public class MiProyectosFragment extends Fragment {
 
  private MediaPlayer mediap;
  private int positionVid;
- private ImageView iv;
  private TextView titulo, plataforma, estado, categoria;
  private ListView lvMisProyectos;
  private View root;
@@ -85,7 +90,7 @@ public class MiProyectosFragment extends Fragment {
 
     public void ComponentesVistas(View v)
     {
-        iv = v.findViewById(R.id.ivMisProyectos);
+        //iv = v.findViewById(R.id.ivMisProyectos);
 
 
 
@@ -140,13 +145,25 @@ public class MiProyectosFragment extends Fragment {
 
             final VideoView vv = itemView.findViewById(R.id.vvMisProyectos);
 
+            final ImageView iv = itemView.findViewById(R.id.ivMisProyectos);
+
             ComponentesVistas(itemView);
 
             final Proyecto proyecto = lista.get(position);
 
             pathCompleto = path + proyecto.getPortada();
 
-            Picasso.with(getContext()).load(pathCompleto).into(iv);
+            Glide.with(getContext()).load(pathCompleto).diskCacheStrategy(DiskCacheStrategy.NONE).into(new CustomTarget<Drawable>() {
+                @Override
+                public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                    iv.setBackground(resource);
+                }
+
+                @Override
+                public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                }
+            });
 
             iv.setColorFilter(getContext().getResources().getColor(R.color.transparenteColor));
 
