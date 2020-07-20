@@ -6,5 +6,6 @@
     <color name="EditTextNOBG">#00000000</color>
     <color name="transparenteColor">#4D000000</color>
     <color name ="Rosabase">#fbbed1</color>
+    <color name = "transparentetotal">#00000000</color>
     <drawable name="transperent">#00000000</drawable>
 </resources>

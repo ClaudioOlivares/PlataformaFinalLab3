@@ -55,7 +55,7 @@ public class MiProyectosFragment extends Fragment {
 
          miProyectosViewModel.TraerProyectos(getContext());
 
-         lvMisProyectos.requestFocus();
+
 
          miProyectosViewModel.getProyectosMutableLiveData().observe(getViewLifecycleOwner(), new Observer<List<Proyecto>>() {
              @Override

@@ -50,7 +50,7 @@ public class ProyectoMain extends Fragment {
     private View root;
     private ImageView iv;
     private String urlImagen;
-    private VideoView vv;
+    private VideoView vv, vvTrailer;
     private String urlVideo;
     private List<String> urlimgsProyecto = new ArrayList<>();
     private CarouselView carouselView;
@@ -59,22 +59,25 @@ public class ProyectoMain extends Fragment {
     private Button btnDevlogs, btnActualizar, btnAceptarActualizar, btnCancelarActualizacion;
 
 
+
     //----------------------------------------ATRIBUTOS ACTUALIZACION-------------------------------------//
     private boolean actualizando = false;
     private static  final int  IMG_REQUEST = 777;
     private static final int IMG_REQUESTTITULO = 888;
     private static final int VID_REQUESTVIDEO = 555;
+    private static final int VID_REQUESTTRAILER = 666;
     private int imagencarouselclickeada;
-    private ConstraintLayout cl;
+
 
     //-------- AUXILIARES ACTUALIZACION -----
 
-    private String auxTitulo, auxResumen, auxTextoCompleto , auxUriVideo, auxCreador, auxGenero, auxStatus, auxPlataforma;
+    private String auxTitulo, auxResumen, auxTextoCompleto , auxUriVideo, auxUriVideoTrailer, auxGenero, auxStatus, auxPlataforma;
     private Bitmap auxIvPortada;
     private List<Bitmap> auxCarouselBitMaps = new ArrayList<>();
     private List<String> auxCarouselStrings = new ArrayList<>();
     private List<Integer> idsImages = new ArrayList<>();
     private boolean resetcarousel;
+    private Uri actualVideoTrailerUri, actualVideoCortoUri;
 
     public ProyectoMain() {
     }
@@ -129,9 +132,6 @@ public class ProyectoMain extends Fragment {
 
                 generadorVideo(imagenProyectos.get(0).getProyecto().getVideoTrailer());
 
-
-                auxCreador = creador.getText().toString();
-
                 auxGenero = genero.getText().toString();
 
                 auxStatus = status.getText().toString();
@@ -143,6 +143,8 @@ public class ProyectoMain extends Fragment {
                 auxResumen = textoResumen.getText().toString();
 
                 auxTextoCompleto = textoCompleto.getText().toString();
+
+                auxUriVideoTrailer = imagenProyectos.get(0).getProyecto().getVideo();
 
                 for (ImagenProyecto item : imagenProyectos) {
                     String pathCompleto = ap.getPATHRECURSOS() + item.getUrl();
@@ -189,6 +191,13 @@ public class ProyectoMain extends Fragment {
     ImageListener imageListener = new ImageListener() {
         @Override
         public void setImageForPosition(int position, final ImageView imageView) {
+
+
+            if(auxCarouselBitMaps.size() == 3)
+            {
+                auxCarouselBitMaps.clear();
+            }
+
             if(!resetcarousel)
             {
                     Glide.with(getActivity()).asBitmap().load(urlimgsProyecto.get(position)).diskCacheStrategy(DiskCacheStrategy.NONE).into(new CustomTarget<Bitmap>()
@@ -245,10 +254,9 @@ public class ProyectoMain extends Fragment {
 
         titulo.setFocusable(false);
 
-        cl = root.findViewById(R.id.cl);
-
-        cl.requestFocus();
         genero = root.findViewById(R.id.etGeneroProyectoMain);
+
+        vvTrailer = root.findViewById(R.id.vvTrailerMiProyecto);
 
         vv = root.findViewById(R.id.vvProyectoMain);
 
@@ -259,8 +267,6 @@ public class ProyectoMain extends Fragment {
         iv = root.findViewById(R.id.ivPortadaProyectoMain);
 
         iv.setFocusable(false);
-
-
 
         carouselView = root.findViewById(R.id.carouselView);
 
@@ -277,6 +283,12 @@ public class ProyectoMain extends Fragment {
         btnAceptarActualizar.setVisibility(View.INVISIBLE);
 
         btnCancelarActualizacion.setVisibility(View.INVISIBLE);
+
+       // flvideoCorto = root.findViewById(R.id.flayoutminivideo);
+
+        vvTrailer.setBackgroundResource(R.color.transparentetotal);
+
+        vv.setBackgroundResource(R.color.transparentetotal);
 
 
     }
@@ -322,13 +334,30 @@ public class ProyectoMain extends Fragment {
 
         mediaController.setAnchorView(vv);
 
-
         vv.setMediaController(mediaController);
 
+    }
 
+    public void generadorVideoCorto(String url)
+    {
 
+        urlVideo = ap.getPATHRECURSOS() + url;
+
+        auxUriVideoTrailer = url;
+
+        vvTrailer.setVideoURI(Uri.parse(urlVideo));
+
+        MediaController mediaController = new MediaController(getContext());
+
+        mediaController.setAnchorView(vvTrailer);
+
+        vvTrailer.setMediaController(mediaController);
 
     }
+
+
+
+
 
 //-----------------------------------------------------------------------------------------------------------//
 
@@ -373,6 +402,8 @@ public class ProyectoMain extends Fragment {
         {
             Uri path = data.getData();
 
+            actualVideoTrailerUri = path;
+
             vv.setVideoURI(Uri.parse(path.toString()));
 
             MediaController mediaController = new MediaController(getContext());
@@ -380,6 +411,24 @@ public class ProyectoMain extends Fragment {
             vv.setMediaController(mediaController);
 
             mediaController.setAnchorView(vv);
+
+
+        }
+
+        if(requestCode == VID_REQUESTTRAILER && resultCode == getActivity().RESULT_OK && data != null)
+        {
+            Uri path = data.getData();
+
+            actualVideoCortoUri = path;
+
+            vvTrailer.setVideoURI(Uri.parse(path.toString()));
+
+            MediaController mediaController = new MediaController(getContext());
+
+            vvTrailer.setMediaController(mediaController);
+
+            mediaController.setAnchorView(vv);
+
 
 
         }
@@ -416,6 +465,7 @@ public class ProyectoMain extends Fragment {
 
                 plataforma.setEnabled(true);
 
+
                 textoCompleto.setBackgroundResource(R.color.transparenteColor);
 
                 textoResumen.setBackgroundResource(R.color.transparenteColor);
@@ -427,6 +477,12 @@ public class ProyectoMain extends Fragment {
                 genero.setBackgroundResource(R.color.transparenteColor);
 
                 plataforma.setBackgroundResource(R.color.transparenteColor);
+
+            //    flvideoCorto.setVisibility(View.VISIBLE);
+
+                vvTrailer.setVisibility(View.VISIBLE);
+
+                generadorVideoCorto(auxUriVideoTrailer);
 
             }
         });
@@ -489,6 +545,30 @@ public class ProyectoMain extends Fragment {
             }
         });
 
+        vvTrailer.setOnClickListener(new View.OnClickListener() {
+            private int touchs = 0;
+
+            @Override
+            public void onClick(View v)
+            {
+                touchs ++;
+                if(actualizando && touchs > 2)
+                {
+                    Intent i = new Intent();
+
+                    i.setType("video/*");
+
+                    i.setAction(Intent.ACTION_GET_CONTENT);
+
+                    touchs = 0;
+
+                    startActivityForResult(i, VID_REQUESTTRAILER);
+                }
+            }
+        });
+
+
+
         btnCancelarActualizacion.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -539,6 +619,11 @@ public class ProyectoMain extends Fragment {
 
                 titulo.setBackgroundResource(R.color.EditTextNOBG);
 
+                vvTrailer.setVisibility(View.GONE);
+
+
+         //       flvideoCorto.setVisibility(View.GONE);
+
 
                 //----------------------------Reset Portada----------------------------------------//
 
@@ -573,6 +658,44 @@ public class ProyectoMain extends Fragment {
 
             }
         });
+
+        btnAceptarActualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                //--Carousel--//
+                List<String> carouselBitmapTo64 = new ArrayList<>();
+
+                for (Bitmap item: auxCarouselBitMaps)
+                {
+                    String img64 = vm.imgto64(item);
+
+                    carouselBitmapTo64.add(img64);
+                }
+
+                //---Portada--//
+//                Bitmap bitmap = ((BitmapDrawable)iv.getDrawable()).getBitmap();
+
+         //       String portadaImg64 = vm.imgto64(bitmap);
+
+                //---VideoTrailer--//
+                if(actualVideoTrailerUri != null)
+                {
+                    String videoTrailer64 = vm.videoto64(actualVideoTrailerUri,getContext());
+                }
+
+                //--VideoCorto--//
+
+                String videoCorto64;
+                if(actualVideoCortoUri != null)
+                {
+                    videoCorto64 = vm.videoto64(actualVideoCortoUri, getContext());
+                }
+
+            }
+
+        });
     }
+
 
 }

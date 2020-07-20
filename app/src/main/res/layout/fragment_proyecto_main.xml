@@ -290,6 +290,16 @@
                 app:layout_constraintStart_toEndOf="@+id/btnAceptarActualizarMiProyecto"
                 app:layout_constraintTop_toBottomOf="@+id/btnActualizarProyecto" />
 
+            <VideoView
+                android:id="@+id/vvTrailerMiProyecto"
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:layout_marginTop="25dp"
+                android:nestedScrollingEnabled="true"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etTextoCompletoProyectoMain" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>

@@ -14,6 +14,7 @@ import models.DevLogItem;
 import models.ImagenProyecto;
 import models.LoginView;
 import models.Proyecto;
+import models.ProyectoMasImagenesView;
 import models.Usuario;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -81,6 +82,10 @@ public class ApiClient {
 
             @POST("Proyecto/checkear")
             Call<String> checkearproyecto(@Header("Authorization") String token, @Body int id);
+
+            @PUT("Proyecto/actualizar")
+            Call<Proyecto> actualizarProyecto(@Body ProyectoMasImagenesView proyectoMasImagenes, @Header("Authorization") String token);
+
 
         //------------------------------------------------PROYECTO CON IMAGEN-------------------------------------------------------
 

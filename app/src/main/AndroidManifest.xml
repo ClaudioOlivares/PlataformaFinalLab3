@@ -8,6 +8,8 @@
         tools:replace="android:label"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
         android:label="Sky-Box"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
