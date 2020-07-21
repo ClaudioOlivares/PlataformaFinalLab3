@@ -87,6 +87,7 @@ public class ApiClient {
             Call<Proyecto> actualizarProyecto(@Body ProyectoMasImagenesView proyectoMasImagenes, @Header("Authorization") String token);
 
 
+
         //------------------------------------------------PROYECTO CON IMAGEN-------------------------------------------------------
 
             @GET("ImagenProyecto/{id}")
@@ -98,10 +99,31 @@ public class ApiClient {
             @GET("DevLog/{id}")
             Call<List<DevLog>> TraerDevlogs(@Header("Authorization") String token, @Path("id")int id);
 
-            //-----------------------------------------------DEVLOG ITEMS------------------------------------------------------------
+            @POST("DevLog/checkear")
+            Call<String> checkearDevLog(@Header("Authorization") String token, @Body int id);
+
+            @POST("DevLog/GetDevlog")
+            Call<DevLog> traerDevlogSeleccionado (@Header("Authorization") String token, @Body int id);
+
+            @PUT("DevLog/actualizar")
+            Call<DevLog> actualizarDevlog(@Body DevLog devLog, @Header("Authorization") String token);
+
+
+
+
+        //-----------------------------------------------DEVLOG ITEMS------------------------------------------------------------
 
             @GET("DevLogItem/{id}")
             Call<List<DevLogItem>> traerDevlogsItems(@Header("Authorization") String token, @Path("id")int id);
+            @POST("DevLogItem/checkear")
+            Call<String> checkearDevLogItem(@Header("Authorization") String token, @Body int id);
+            @POST("DevLogItem/GetDevlogItem")
+            Call<DevLogItem> traerDevlogItemSeleccionado (@Header("Authorization") String token, @Body int id);
+            @PUT("DevLogItem/actualizar")
+            Call<DevLogItem> actualizarDevlogItem (@Body DevLogItem devLogItem, @Header("Authorization") String token);
+
+
+
     }
 
 

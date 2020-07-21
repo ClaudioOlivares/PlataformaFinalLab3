@@ -43,10 +43,27 @@
         <action
             android:id="@+id/action_devLogMain_to_devlogItem"
             app:destination="@id/devlogItem" />
+        <action
+            android:id="@+id/action_devLogMain_to_actualizarDevlog"
+            app:destination="@id/actualizarDevlog" />
     </fragment>
     <fragment
         android:id="@+id/devlogItem"
         android:name="DevlogItem.DevlogItemfragment"
         android:label="fragment_devlog_item"
-        tools:layout="@layout/fragment_devlog_item" />
+        tools:layout="@layout/fragment_devlog_item" >
+        <action
+            android:id="@+id/action_devlogItem_to_actualizarCrearDevLogItem"
+            app:destination="@id/actualizarCrearDevLogItem" />
+    </fragment>
+    <fragment
+        android:id="@+id/actualizarDevlog"
+        android:name="devlog.ActualizarCrearDevlog"
+        android:label="fragment_actualizar_devlog"
+        tools:layout="@layout/fragment_actualizar_devlog" />
+    <fragment
+        android:id="@+id/actualizarCrearDevLogItem"
+        android:name="DevlogItem.ActualizarCrearDevLogItem"
+        android:label="fragment_actualizar_crear_dev_log_item"
+        tools:layout="@layout/fragment_actualizar_crear_dev_log_item" />
 </navigation>

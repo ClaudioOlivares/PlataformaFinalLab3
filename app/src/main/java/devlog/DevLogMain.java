@@ -25,6 +25,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -60,6 +61,10 @@ public class DevLogMain extends Fragment {
 
     private DevLogViewModel vm;
 
+    private boolean actualizable = false;
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         vm = ViewModelProviders.of(this).get(DevLogViewModel.class);
@@ -68,7 +73,23 @@ public class DevLogMain extends Fragment {
 
         lv = root.findViewById(R.id.lvDevLogs);
 
+
         id = getArguments().getInt("id");
+
+
+
+        vm.getRespuestaCheckeoMutableLiveData().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+
+                    actualizable = true;
+
+
+
+            }
+        });
+
+        vm.checkearDevLogs(getContext(),id);
 
 
         vm.getDevlogMutableLiveData().observe(getViewLifecycleOwner(), new Observer<List<DevLog>>() {
@@ -84,8 +105,12 @@ public class DevLogMain extends Fragment {
             }
         });
 
+
         vm.traerDevLogs(getContext(), id);
-        Toast.makeText(getContext(), getActivity().getCurrentFocus().toString(), Toast.LENGTH_LONG).show();
+
+
+
+
 
         return root;
     }
@@ -138,6 +163,10 @@ public class DevLogMain extends Fragment {
 
             final ImageView iv;
 
+            Button btnActualizar;
+
+            btnActualizar = itemView.findViewById(R.id.btnActualizarDevlog);
+
             tvTitulo = itemView.findViewById(R.id.tvTituloDevlog);
 
             iv = itemView.findViewById(R.id.ivImagenDevLog);
@@ -147,6 +176,23 @@ public class DevLogMain extends Fragment {
             final int iddevlog = devlog.getIdDevlog();
 
             tvTitulo.setText(devlog.getTitulo());
+
+            if(actualizable)
+            {
+                btnActualizar.setVisibility(View.VISIBLE);
+
+                btnActualizar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        Bundle bundle = new Bundle();
+
+                        bundle.putInt("id", devlog.getIdDevlog());
+
+                        Navigation.findNavController(v).navigate(R.id.actualizarDevlog, bundle);
+                    }
+                });
+            }
 
             pathCompleto =  ap.getPATHRECURSOS() + devlog.getProyecto().getPortada();
 

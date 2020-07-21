@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="DevlogItem.ActualizarCrearDevLogItem" >
+
+    <EditText
+        android:id="@+id/etTituloCrearActualizarDLITEM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:background="#00000000"
+        android:editable="true"
+        android:elevation="10dp"
+        android:ems="10"
+        android:fontFamily="@font/montheavydemo"
+        android:inputType="text|textMultiLine"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="38sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/tvTextoCrearActualizarDLITEM"
+        android:layout_width="375dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:background="#00000000"
+        android:editable="true"
+        android:inputType="text|textMultiLine"
+        android:textAlignment="textStart"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etTituloCrearActualizarDLITEM" />
+
+    <ImageView
+        android:id="@+id/ivCrearActualizarDLITEM"
+        android:layout_width="375dp"
+        android:layout_height="275dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTextoCrearActualizarDLITEM" />
+
+    <Button
+        android:id="@+id/btnActualizarCrearDLITEM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="28dp"
+        android:text="Hecho"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivCrearActualizarDLITEM" />
+</androidx.constraintlayout.widget.ConstraintLayout>
