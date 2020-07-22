@@ -260,6 +260,8 @@ public class ProyectoMain extends Fragment {
 
         titulo = root.findViewById(R.id.etTituloProyectoMain);
 
+        titulo.requestFocus();
+
         creador = root.findViewById(R.id.etCreadorProyectoMain);
 
         status = root.findViewById(R.id.etStatusProyectoMain);

@@ -194,6 +194,8 @@ public class DevlogItemViewModel extends ViewModel
 
         dli.setTexto(texto.getText().toString());
 
+        dli.setTitulo(titulo.getText().toString());
+
         dli.setMultimedia(img64);
 
         Call<DevLogItem> res = ApiClient.getMyApiClient().actualizarDevlogItem(dli,token);
@@ -210,10 +212,10 @@ public class DevlogItemViewModel extends ViewModel
                 {
                     try
                     {
-                        Toast.makeText(ctx, response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ctx, response.errorBody().string() + "ASD3", Toast.LENGTH_SHORT).show();
                     } catch (IOException e)
                     {
-                        Toast.makeText(ctx, e.getMessage(), Toast.LENGTH_SHORT).show();;
+                        Toast.makeText(ctx, e.getMessage() + "ASD 2", Toast.LENGTH_SHORT).show();;
                     }
                 }
             }
@@ -221,7 +223,7 @@ public class DevlogItemViewModel extends ViewModel
             @Override
             public void onFailure(Call<DevLogItem> call, Throwable t)
             {
-                Toast.makeText(ctx, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ctx, t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }
         });
 

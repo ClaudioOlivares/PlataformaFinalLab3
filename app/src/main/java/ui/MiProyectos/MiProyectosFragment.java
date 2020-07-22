@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -45,6 +46,7 @@ public class MiProyectosFragment extends Fragment {
  private ListView lvMisProyectos;
  private View root;
  private List<Proyecto> list;
+ private Button btnCrearProyecto;
  private static final String  path = "http://192.168.0.104:45455/";
 
 
@@ -72,6 +74,19 @@ public class MiProyectosFragment extends Fragment {
              }
          });
 
+        btnCrearProyecto = root.findViewById(R.id.btnCrearProyecto);
+
+
+        btnCrearProyecto .setOnClickListener(new View.OnClickListener()
+         {
+             @Override
+             public void onClick(View v)
+             {
+                 Navigation.findNavController(v).navigate(R.id.crearProyecto);
+             }
+         });
+
+
         return root;
     }
 
@@ -91,7 +106,6 @@ public class MiProyectosFragment extends Fragment {
     public void ComponentesVistas(View v)
     {
         //iv = v.findViewById(R.id.ivMisProyectos);
-
 
 
         titulo = v.findViewById(R.id.tvTitleMisProyectos);

@@ -4,7 +4,7 @@ public class DevLogItem
 {
     private int idDevLogItem;
 
-    private int idDevlog;
+    private int idDevLog;
 
     private DevLog devLog;
 
@@ -18,7 +18,7 @@ public class DevLogItem
     {
         this.idDevLogItem = idDevlogItem;
 
-        this.idDevlog = idDevlog;
+        this.idDevLog = idDevlog;
 
         this.devLog = devLog;
 
@@ -59,11 +59,11 @@ public class DevLogItem
     }
 
     public int getIdDevlog() {
-        return idDevlog;
+        return idDevLog;
     }
 
     public void setIdDevlog(int idDevlog) {
-        this.idDevlog = idDevlog;
+        this.idDevLog = idDevlog;
     }
 
     public DevLog getDevLog() {
