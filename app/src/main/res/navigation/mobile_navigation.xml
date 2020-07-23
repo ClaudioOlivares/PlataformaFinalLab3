@@ -63,7 +63,13 @@
         android:id="@+id/actualizarDevlog"
         android:name="devlog.ActualizarCrearDevlog"
         android:label="fragment_actualizar_devlog"
-        tools:layout="@layout/fragment_actualizar_devlog" />
+        tools:layout="@layout/fragment_actualizar_devlog" >
+        <action
+            android:id="@+id/action_actualizarDevlog_pop"
+            app:destination="@id/devLogMain"
+            app:popUpTo="@id/actualizarDevlog"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/actualizarCrearDevLogItem"
         android:name="DevlogItem.ActualizarCrearDevLogItem"

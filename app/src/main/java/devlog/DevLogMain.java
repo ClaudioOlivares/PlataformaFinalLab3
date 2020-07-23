@@ -63,6 +63,8 @@ public class DevLogMain extends Fragment {
 
     private boolean actualizable = false;
 
+    private Button btnCrear;
+
 
 
     @Override
@@ -72,6 +74,8 @@ public class DevLogMain extends Fragment {
         root = inflater.inflate(R.layout.fragment_dev_log_main, container, false);
 
         lv = root.findViewById(R.id.lvDevLogs);
+
+        btnCrear = root.findViewById(R.id.btnCrearDevLog);
 
 
         id = getArguments().getInt("id");
@@ -83,8 +87,6 @@ public class DevLogMain extends Fragment {
             public void onChanged(String s) {
 
                     actualizable = true;
-
-
 
             }
         });
@@ -110,7 +112,22 @@ public class DevLogMain extends Fragment {
 
 
 
+        btnCrear.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
 
+                Bundle bundle = new Bundle();
+
+                bundle.putInt("id", id);
+
+                bundle.putString("accion","crear");
+
+                Navigation.findNavController(v).navigate(R.id.actualizarDevlog, bundle);
+
+            }
+        });
 
         return root;
     }

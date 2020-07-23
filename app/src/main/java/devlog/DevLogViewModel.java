@@ -31,6 +31,8 @@ public class DevLogViewModel extends ViewModel
 
     private  MutableLiveData<DevLog> devlogactualizadoMutableLiveData;
 
+    private  MutableLiveData<DevLog> devlogcreadoMutableLiveData;
+
     public DevLogViewModel()
     {
 
@@ -73,6 +75,16 @@ public class DevLogViewModel extends ViewModel
         }
         return devlogactualizadoMutableLiveData;
     }
+
+    public LiveData<DevLog> getDevlogcreadoMutableLiveData()
+    {
+        if(devlogcreadoMutableLiveData == null)
+        {
+            devlogcreadoMutableLiveData = new MutableLiveData<>();
+        }
+        return devlogcreadoMutableLiveData;
+    }
+
 
 
 
@@ -226,6 +238,53 @@ public class DevLogViewModel extends ViewModel
         });
 
     }
+
+
+    public void crearDevlog(EditText titulo, EditText resumen, int id, final Context ctx)
+    {
+        DevLog dl = new DevLog();
+
+        dl.setTitulo(titulo.getText().toString());
+
+        dl.setResumen(resumen.getText().toString());
+
+        dl.setIdProyecto(id);
+
+        String token = "Bearer " + sp.leerToken(ctx);
+
+        Call<DevLog> res = ApiClient.getMyApiClient().crearDevlog(token,dl);
+
+        res.enqueue(new Callback<DevLog>() {
+            @Override
+            public void onResponse(Call<DevLog> call, Response<DevLog> response)
+            {
+                if(response.isSuccessful())
+                {
+                   devlogcreadoMutableLiveData.setValue(response.body());
+                }
+                else
+                {
+                    try
+                    {
+                        Toast.makeText(ctx, response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                    } catch (IOException e)
+                    {
+                        Toast.makeText(ctx, e.getMessage(), Toast.LENGTH_SHORT).show();;
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DevLog> call, Throwable t)
+            {
+                Toast.makeText(ctx, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+
+
 
 
 }

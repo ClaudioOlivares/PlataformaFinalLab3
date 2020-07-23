@@ -194,13 +194,25 @@ public class MiProyectosFragment extends Fragment {
 
             pathCompletoVideo = path + proyecto.getVideo();
 
+            vv.setBackgroundResource(R.color.transparentetotal);
+
             vv.setVideoURI(Uri.parse(pathCompletoVideo));
+
+            vv.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    mediap = mp;
+                    mediap.start();
+                }
+            });
 
             iv.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
+                    vv.setVideoURI(Uri.parse(pathCompletoVideo));
                     vv.setVisibility(v.VISIBLE);
                     vv.start();
+
                     return true;
                 }
             });
@@ -210,8 +222,13 @@ public class MiProyectosFragment extends Fragment {
                 public boolean onTouch(View v, MotionEvent event) {
                     if(event.getAction() == MotionEvent.ACTION_UP)
                     {
+                        vv.setVideoURI(Uri.parse(pathCompletoVideo));
                         vv.setVisibility(v.INVISIBLE);
                         vv.stopPlayback();
+
+
+
+
                     }
                     return false;
                 }

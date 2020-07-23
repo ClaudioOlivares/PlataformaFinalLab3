@@ -71,8 +71,10 @@ private static  final int  IMG_REQUEST = 777;
                     setearElementos(devLogItem);
                 }
             });
-
-            vm.traerDevlogsitemSeleccionado(getContext(),idSeleccionado);
+            if(getArguments().getString("accion") == null )
+            {
+                vm.traerDevlogsitemSeleccionado(getContext(), idSeleccionado);
+            }
 
             iv.setOnClickListener(new View.OnClickListener() {
                 @Override

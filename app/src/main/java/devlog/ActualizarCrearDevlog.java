@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.plataformafinallab3.R;
 
@@ -42,19 +43,24 @@ private int idDevlogaActualizar;
         {
             id = getArguments().getInt("id");
 
+            if(getArguments().getString("accion") == null)
+            {
+
+                vm.traerDevlogSeleccionado(getContext(),id);
+            }
+
             vm.getDevlogseleccionadoMutableLiveData().observe(getViewLifecycleOwner(), new Observer<DevLog>() {
                 @Override
-                public void onChanged(DevLog devLog)
-                {
+                public void onChanged(DevLog devLog) {
                     titulo.setText(devLog.getTitulo());
 
                     resumen.setText(devLog.getResumen());
 
                     idDevlogaActualizar = devLog.getIdDevlog();
+
                 }
             });
 
-            vm.traerDevlogSeleccionado(getContext(),id);
 
             vm.getDevlogactualizadoMutableLiveData().observe(getViewLifecycleOwner(), new Observer<DevLog>() {
                 @Override
@@ -69,11 +75,32 @@ private int idDevlogaActualizar;
                 }
             });
 
+            vm.getDevlogcreadoMutableLiveData().observe(getViewLifecycleOwner(), new Observer<DevLog>() {
+                @Override
+                public void onChanged(DevLog devLog)
+                {
+                    Bundle bundle = new Bundle();
+
+                    bundle.putInt("id", devLog.getIdProyecto());
+
+                    Toast.makeText(getContext(), "DevLog Creado", Toast.LENGTH_LONG).show();
+
+                    Navigation.findNavController(root).navigate(R.id.devLogMain,bundle);
+                }
+            });
+
             btnActualizar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
                 {
-                    vm.actualizarDevlog(titulo,resumen,idDevlogaActualizar,getContext());
+                    if(getArguments().getString("accion") == null)
+                    {
+                        vm.actualizarDevlog(titulo,resumen,idDevlogaActualizar,getContext());
+                    }
+                    else
+                    {
+                        vm.crearDevlog(titulo,resumen,id,getContext());
+                    }
                 }
             });
 

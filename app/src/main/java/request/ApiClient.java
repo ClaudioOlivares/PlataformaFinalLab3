@@ -86,6 +86,9 @@ public class ApiClient {
             @PUT("Proyecto/actualizar")
             Call<Proyecto> actualizarProyecto(@Body ProyectoMasImagenesView proyectoMasImagenes, @Header("Authorization") String token);
 
+            @POST("Proyecto")
+            Call<Proyecto> crearProyecto (@Header("Authorization") String token, @Body ProyectoMasImagenesView proyecto);
+
 
 
         //------------------------------------------------PROYECTO CON IMAGEN-------------------------------------------------------
@@ -108,6 +111,10 @@ public class ApiClient {
             @PUT("DevLog/actualizar")
             Call<DevLog> actualizarDevlog(@Body DevLog devLog, @Header("Authorization") String token);
 
+             @POST("DevLog")
+             Call<DevLog> crearDevlog (@Header("Authorization") String token, @Body DevLog devlog);
+
+
 
 
 
@@ -115,12 +122,18 @@ public class ApiClient {
 
             @GET("DevLogItem/{id}")
             Call<List<DevLogItem>> traerDevlogsItems(@Header("Authorization") String token, @Path("id")int id);
+
             @POST("DevLogItem/checkear")
             Call<String> checkearDevLogItem(@Header("Authorization") String token, @Body int id);
+
             @POST("DevLogItem/GetDevlogItem")
             Call<DevLogItem> traerDevlogItemSeleccionado (@Header("Authorization") String token, @Body int id);
+
             @PUT("DevLogItem/actualizar")
             Call<DevLogItem> actualizarDevlogItem (@Body DevLogItem devLogItem, @Header("Authorization") String token);
+
+            @POST("DevLogItem")
+            Call<DevLogItem> crearDevlogItem (@Header("Authorization") String token, @Body DevLogItem devlog);
 
 
 

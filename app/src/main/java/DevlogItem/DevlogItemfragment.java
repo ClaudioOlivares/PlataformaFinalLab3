@@ -50,6 +50,8 @@ public class DevlogItemfragment extends Fragment {
 
     private List<DevLogItem> lista = new ArrayList<>();
 
+    private Button btnCrearItem;
+
 
 
     @Override
@@ -68,11 +70,11 @@ public class DevlogItemfragment extends Fragment {
 
         root =  inflater.inflate(R.layout.fragment_devlog_item, container, false);
 
-   //     titulo = root.findViewById(R.id.tvTituloDevlogItem);
+        btnCrearItem = root.findViewById(R.id.btnCreadDevLogITEM);
 
         id = getArguments().getInt("id");
 
-       lv = root.findViewById(R.id.lvDevlogItem);
+        lv = root.findViewById(R.id.lvDevlogItem);
 
        vm.getDevlogitemMutableLiveData().observe(getViewLifecycleOwner(), new Observer<List<DevLogItem>>()
        {
@@ -85,12 +87,26 @@ public class DevlogItemfragment extends Fragment {
 
 
 
+
              //      titulo.setText(devLogItems.get(0).getDevLog().getTitulo());
 
                    generarVista();
 
                }
 
+           }
+       });
+
+       btnCrearItem.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Bundle bundle = new Bundle();
+
+               bundle.putInt("id",id);
+
+               bundle.putString("accion","crear");
+
+               Navigation.findNavController(root).navigate(R.id.action_devlogItem_to_actualizarCrearDevLogItem,bundle);
            }
        });
 

@@ -229,7 +229,7 @@ public class DevlogItemViewModel extends ViewModel
 
     }
 
-
+    
 
 
 

@@ -10,6 +10,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,11 +30,18 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.example.plataformafinallab3.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import models.Proyecto;
+
 
 public class CrearProyecto extends Fragment
 {
 
     private View root;
+
+    private ProyectoViewModel vm;
 
     private VideoView vvTrailer, vvThumbnail;
 
@@ -53,15 +63,27 @@ public class CrearProyecto extends Fragment
 
     private static final int VID_REQUESTVIDEOTHUMB = 222;
 
+    private Uri auxVideoTrailer, auxVideoThumbnail;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
+    {
+        vm = ViewModelProviders.of(this).get(ProyectoViewModel.class);
+
        root = inflater.inflate(R.layout.fragment_crear_proyecto, container, false);
 
         elementosVista();
 
+        vm.getProyectocreadoMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Proyecto>()
+        {
+            @Override
+            public void onChanged(Proyecto proyecto)
+            {
+                Toast.makeText(getContext(), "Proyecto Creado Correctamente", Toast.LENGTH_LONG).show();
 
+                Navigation.findNavController(root).navigate(R.id.nav_home);
+            }
+        });
        return root;
 
     }
@@ -93,7 +115,7 @@ public class CrearProyecto extends Fragment
 
         resumen = root.findViewById(R.id.etResumenCrearProyecto);
 
-        textoCompleto = root.findViewById(R.id.etTextoCompletoProyectoMain);
+        textoCompleto = root.findViewById(R.id.etTextoCompletoCrearProyecto);
 
         categoria = root.findViewById(R.id.etGeneroCrearProyecto);
 
@@ -165,7 +187,45 @@ public class CrearProyecto extends Fragment
             @Override
             public void onClick(View v)
             {
-                Toast.makeText(getContext(), getActivity().getCurrentFocus().toString(), Toast.LENGTH_LONG).show();
+                //-----Carousel------//
+
+                List<String> carouselBitmapTo64 = new ArrayList<>();
+
+                Bitmap bitmap1 = ((BitmapDrawable)ivCarousel1.getDrawable()).getBitmap();
+
+                String img641 = vm.imgto64(bitmap1);
+
+                carouselBitmapTo64.add(img641);
+
+                Bitmap bitmap2 = ((BitmapDrawable)ivCarousel2.getDrawable()).getBitmap();
+
+                String img642 = vm.imgto64(bitmap2);
+
+                carouselBitmapTo64.add(img642);
+
+                Bitmap bitmap3 = ((BitmapDrawable)ivCarousel3.getDrawable()).getBitmap();
+
+                String img643 = vm.imgto64(bitmap3);
+
+                carouselBitmapTo64.add(img643);
+
+                //-- Portada--//
+
+                Bitmap bitmapPortada = ((BitmapDrawable)ivPortada.getDrawable()).getBitmap();
+
+                String portadaImg64 = vm.imgto64(bitmapPortada);
+
+                //-- Video Trailer --//
+
+                String videoTrailer64 = vm.videoto64(auxVideoTrailer,getContext());
+
+                // -- Video thumbnail --//
+
+                String videoCorto64 = vm.videoto64(auxVideoThumbnail,getContext());
+
+                vm.crearProyecto(0,titulo,categoria,status,plataforma,portadaImg64,videoTrailer64,
+                        0,resumen,textoCompleto,videoCorto64,carouselBitmapTo64,getContext());
+
 
             }
         });
@@ -229,7 +289,7 @@ public class CrearProyecto extends Fragment
         {
             Uri path = data.getData();
 
-            Glide.with(getActivity()).asBitmap().load(path).diskCacheStrategy(DiskCacheStrategy.NONE).into(ivPortada);
+            Glide.with(getActivity()).load(path).diskCacheStrategy(DiskCacheStrategy.NONE).into(ivPortada);
 
         }
         if(requestCode == IMG_REQUESTCAROUSEL1 && resultCode == getActivity().RESULT_OK && data != null)
@@ -259,6 +319,8 @@ public class CrearProyecto extends Fragment
         {
             Uri path = data.getData();
 
+            auxVideoTrailer = path;
+
             vvTrailer.setVideoURI(path);
 
             MediaController mediaController = new MediaController(getContext());
@@ -269,9 +331,11 @@ public class CrearProyecto extends Fragment
 
         }
 
-        if(requestCode == VID_REQUESTVIDEOTHUMB&& resultCode == getActivity().RESULT_OK && data != null)
+        if(requestCode == VID_REQUESTVIDEOTHUMB && resultCode == getActivity().RESULT_OK && data != null)
         {
             Uri path = data.getData();
+
+            auxVideoThumbnail = path;
 
             vvThumbnail.setVideoURI(path);
 

@@ -38,6 +38,7 @@ public class ProyectoViewModel extends ViewModel
 
     private MutableLiveData<Proyecto> proyectoactualizadoMutableLiveData;
 
+    private MutableLiveData<Proyecto> proyectocreadoMutableLiveData;
 
     public ProyectoViewModel()
     {
@@ -70,6 +71,17 @@ public class ProyectoViewModel extends ViewModel
         }
         return proyectoactualizadoMutableLiveData;
     }
+
+    public LiveData<Proyecto> getProyectocreadoMutableLiveData()
+    {
+        if(proyectocreadoMutableLiveData == null)
+        {
+            proyectocreadoMutableLiveData = new MutableLiveData<>();
+        }
+        return proyectocreadoMutableLiveData;
+    }
+
+
 
 
 
@@ -279,6 +291,83 @@ public class ProyectoViewModel extends ViewModel
         String video64 = Base64.encodeToString(byteBuffer.toByteArray(), Base64.DEFAULT);
 
         return  video64;
+    }
+
+
+    public void crearProyecto (int idProyecto, EditText titulo, EditText genero,EditText status, EditText plataforma,
+    String portada64, String videotrailer64, int idUser, EditText textoResumen, EditText textoCompleto,
+    String videoCorto64, List<String> imgsUrls64, final Context ctx)
+    {
+        String token = "Bearer " + sp.leerToken(ctx);
+
+        List<ImagenProyecto> lista = new ArrayList<>();
+
+        ProyectoMasImagenesView p = new ProyectoMasImagenesView();
+
+        p.setIdProyecto(idProyecto);
+
+        p.setTitulo(titulo.getText().toString());
+
+        p.setGenero(genero.getText().toString());
+
+        p.setStatus(status.getText().toString());
+
+        p.setPlataforma(plataforma.getText().toString());
+
+        p.setPortada(portada64);
+
+        p.setVideo(videoCorto64);
+
+        p.setIdUser(idUser);
+
+        p.setTextoResumen(textoResumen.getText().toString());
+
+        p.setTextoCompleto(textoCompleto.getText().toString());
+
+        p.setVideoTrailer(videotrailer64);
+
+        p.setFechaCreacion(null);
+
+        for (String url:imgsUrls64)
+        {
+            ImagenProyecto i = new ImagenProyecto();
+
+            i.setUrl(url);
+
+            lista.add(i);
+        }
+        p.setImagenes(lista);
+
+        Call<Proyecto> res = ApiClient.getMyApiClient().crearProyecto(token,p);
+
+        res.enqueue(new Callback<Proyecto>() {
+            @Override
+            public void onResponse(Call<Proyecto> call, Response<Proyecto> response)
+            {
+                if(response.isSuccessful())
+                {
+                   proyectocreadoMutableLiveData.postValue(response.body());
+                }
+                else
+                {
+                    try
+                    {
+                        Toast.makeText(ctx, response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                    }
+                    catch (IOException e)
+                    {
+                        Toast.makeText(ctx, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Proyecto> call, Throwable t)
+            {
+                Toast.makeText(ctx, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 }
