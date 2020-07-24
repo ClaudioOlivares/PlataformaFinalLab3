@@ -2,6 +2,7 @@ package DevlogItem;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.provider.CalendarContract;
 import android.util.Base64;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -33,6 +34,8 @@ public class DevlogItemViewModel extends ViewModel
     private MutableLiveData<DevLogItem> devlogitemseleccionadoMutableLiveData;
 
     private MutableLiveData<DevLogItem> devlogitemactualizadoMutableLiveData;
+
+    private MutableLiveData<DevLogItem> devlogitemcreadoMutableLiveData;
 
     public DevlogItemViewModel()
     {
@@ -75,6 +78,15 @@ public class DevlogItemViewModel extends ViewModel
         return devlogitemactualizadoMutableLiveData;
     }
 
+
+    public LiveData<DevLogItem> getdevlogitemcreadoMutableLiveData()
+    {
+        if(devlogitemcreadoMutableLiveData == null)
+        {
+            devlogitemcreadoMutableLiveData = new MutableLiveData<>();
+        }
+        return devlogitemcreadoMutableLiveData;
+    }
 
 
     public void traerDevlogsitems(final Context ctx, int id)
@@ -229,7 +241,56 @@ public class DevlogItemViewModel extends ViewModel
 
     }
 
-    
+
+    public void crearDevLogItem(final Context ctx, int id, EditText texto, EditText titulo, String img64)
+    {
+
+        String token = "Bearer " + sp.leerToken(ctx);
+
+        DevLogItem dli = new DevLogItem();
+
+        dli.setIdDevlog(id);
+
+        dli.setTexto(texto.getText().toString());
+
+        dli.setTitulo(titulo.getText().toString());
+
+        dli.setMultimedia(img64);
+
+        Call<DevLogItem> res = ApiClient.getMyApiClient().crearDevlogItem(token,dli);
+
+        res.enqueue(new Callback<DevLogItem>() {
+            @Override
+            public void onResponse(Call<DevLogItem> call, Response<DevLogItem> response)
+            {
+                if(response.isSuccessful())
+                {
+                    devlogitemcreadoMutableLiveData.setValue(response.body());
+                }
+                else
+                {
+                    try
+                    {
+                        Toast.makeText(ctx, response.errorBody().string() + "ASD3", Toast.LENGTH_SHORT).show();
+                    } catch (IOException e)
+                    {
+                        Toast.makeText(ctx, e.getMessage() + "ASD 2", Toast.LENGTH_SHORT).show();;
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<DevLogItem> call, Throwable t)
+            {
+
+                Toast.makeText(ctx, t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
+
 
 
 

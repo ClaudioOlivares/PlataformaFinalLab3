@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
@@ -87,6 +88,14 @@ public class MiProyectosFragment extends Fragment {
          });
 
 
+        miProyectosViewModel.getProyectoBorradoMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Proyecto>() {
+            @Override
+            public void onChanged(Proyecto proyecto) {
+                Toast.makeText(getContext(), "Proyecto Borrado", Toast.LENGTH_LONG).show();
+
+                Navigation.findNavController(root).navigate(R.id.nav_home);
+            }
+        });
         return root;
     }
 
@@ -160,6 +169,8 @@ public class MiProyectosFragment extends Fragment {
             final VideoView vv = itemView.findViewById(R.id.vvMisProyectos);
 
             final ImageView iv = itemView.findViewById(R.id.ivMisProyectos);
+
+            Button btnBorrar = itemView.findViewById(R.id.btnBorrarProyecto);
 
             ComponentesVistas(itemView);
 
@@ -245,6 +256,14 @@ public class MiProyectosFragment extends Fragment {
 
                  }
              });
+
+             btnBorrar.setOnClickListener(new View.OnClickListener() {
+                 @Override
+                 public void onClick(View v) {
+                     miProyectosViewModel.BorrarProyecto(getContext(),proyecto.getIdProyecto());
+                 }
+             });
+
             return itemView;
         }
     }

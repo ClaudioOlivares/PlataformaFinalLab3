@@ -21,6 +21,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -89,6 +90,8 @@ public class ApiClient {
             @POST("Proyecto")
             Call<Proyecto> crearProyecto (@Header("Authorization") String token, @Body ProyectoMasImagenesView proyecto);
 
+            @DELETE("Proyecto/{id}")
+            Call<Proyecto> BorrarProyecto(@Header("Authorization") String token,@Path("id")int id);
 
 
         //------------------------------------------------PROYECTO CON IMAGEN-------------------------------------------------------

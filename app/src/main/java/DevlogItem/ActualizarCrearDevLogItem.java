@@ -91,19 +91,6 @@ private static  final int  IMG_REQUEST = 777;
                 }
             });
 
-            btnDone.setOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v)
-                {
-                    Bitmap bmp = ((BitmapDrawable)iv.getDrawable()).getBitmap();
-
-                    String bmp64 =  vm.imgto64(bmp);
-
-                    vm.actualizarDevlogsitemSeleccionado(getContext(),idSeleccionado,texto,titulo,bmp64);
-                }
-            });
-
             vm.getdevlogitemactualizadoMutableLiveData().observe(getViewLifecycleOwner(), new Observer<DevLogItem>() {
                 @Override
                 public void onChanged(DevLogItem devLogItem)
@@ -115,6 +102,38 @@ private static  final int  IMG_REQUEST = 777;
                     Navigation.findNavController(root).navigate(R.id.devlogItem,bundle);
                 }
             });
+
+            vm.getdevlogitemcreadoMutableLiveData().observe(getViewLifecycleOwner(), new Observer<DevLogItem>() {
+                @Override
+                public void onChanged(DevLogItem devLogItem)
+                {
+                    Navigation.findNavController(root).navigate(R.id.nav_home);
+
+                }
+            });
+
+            btnDone.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    Bitmap bmp = ((BitmapDrawable)iv.getDrawable()).getBitmap();
+
+                    String bmp64 =  vm.imgto64(bmp);
+
+                    if(getArguments().getString("accion")== null)
+                    {
+                        vm.actualizarDevlogsitemSeleccionado(getContext(),idSeleccionado,texto,titulo,bmp64);
+
+                    }
+                    else
+                    {
+                        vm.crearDevLogItem(getContext(),idSeleccionado,texto,titulo,bmp64);
+                    }
+                }
+            });
+
+
 
         }
 

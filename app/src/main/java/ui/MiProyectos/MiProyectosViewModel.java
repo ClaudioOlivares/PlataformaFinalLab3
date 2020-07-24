@@ -23,6 +23,8 @@ public class MiProyectosViewModel extends ViewModel
 
     private MutableLiveData<List<Proyecto>> proyectosMutableLiveData;
 
+    private MutableLiveData<Proyecto> proyectoBorradoMutableLiveData;
+
 
         public MiProyectosViewModel()
         {
@@ -38,7 +40,16 @@ public class MiProyectosViewModel extends ViewModel
         return proyectosMutableLiveData;
     }
 
-     public void TraerProyectos(final Context ctx)
+    public MutableLiveData<Proyecto> getProyectoBorradoMutableLiveData()
+    {
+        if(proyectoBorradoMutableLiveData == null)
+        {
+            proyectoBorradoMutableLiveData = new MutableLiveData<>();
+        }
+        return proyectoBorradoMutableLiveData;
+    }
+
+    public void TraerProyectos(final Context ctx)
      {
          String token = "Bearer " + sp.leerToken(ctx);
 
@@ -73,4 +84,41 @@ public class MiProyectosViewModel extends ViewModel
         });
 
      }
+
+    public void BorrarProyecto(final Context ctx, int id)
+    {
+        String token = "Bearer " + sp.leerToken(ctx);
+
+        Call<Proyecto> res = ApiClient.getMyApiClient().BorrarProyecto(token,id);
+
+        res.enqueue(new Callback<Proyecto>() {
+            @Override
+            public void onResponse(Call<Proyecto> call, Response<Proyecto> response) {
+
+                if(response.isSuccessful())
+                {
+                    proyectoBorradoMutableLiveData.postValue(response.body());
+                }
+                else
+                {
+                    try
+                    {
+                        Toast.makeText(ctx, response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                    }
+                    catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Proyecto> call, Throwable t) {
+                Toast.makeText(ctx, t.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+    }
+
 }
