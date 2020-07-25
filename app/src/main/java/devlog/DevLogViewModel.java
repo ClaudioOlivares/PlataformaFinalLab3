@@ -33,6 +33,8 @@ public class DevLogViewModel extends ViewModel
 
     private  MutableLiveData<DevLog> devlogcreadoMutableLiveData;
 
+    private MutableLiveData<DevLog> devlogborradoMutableLiveData;
+
     public DevLogViewModel()
     {
 
@@ -85,7 +87,14 @@ public class DevLogViewModel extends ViewModel
         return devlogcreadoMutableLiveData;
     }
 
-
+    public LiveData<DevLog> getDevlogborradoMutableLiveData()
+    {
+        if(devlogborradoMutableLiveData == null)
+        {
+            devlogborradoMutableLiveData = new MutableLiveData<>();
+        }
+        return devlogborradoMutableLiveData;
+    }
 
 
     public void traerDevLogs(final Context ctx, int id)
@@ -282,9 +291,37 @@ public class DevLogViewModel extends ViewModel
         });
     }
 
+    public void borrarDevlog(int id, final Context ctx)
+    {
+        String token = "Bearer " + sp.leerToken(ctx);
 
+        Call<DevLog> res = ApiClient.getMyApiClient().BorrarDevlog(token,id);
 
+        res.enqueue(new Callback<DevLog>() {
+            @Override
+            public void onResponse(Call<DevLog> call, Response<DevLog> response) {
+                if(response.isSuccessful())
+                {
+                    devlogborradoMutableLiveData.setValue(response.body());
+                }
+                else
+                {
+                    try
+                    {
+                        Toast.makeText(ctx, response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                    } catch (IOException e)
+                    {
+                        Toast.makeText(ctx, e.getMessage(), Toast.LENGTH_SHORT).show();;
+                    }
+                }
+            }
 
+            @Override
+            public void onFailure(Call<DevLog> call, Throwable t) {
+                Toast.makeText(ctx, t.getMessage(), Toast.LENGTH_SHORT).show();
 
+            }
+        });
+    }
 
 }

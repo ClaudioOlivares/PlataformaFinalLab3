@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#4D3A4D</color>
-    <color name="colorPrimaryDark">#EF9FCF</color>
+    <color name="colorPrimary">#dda196</color>
+    <color name="colorPrimaryDark">#a85873</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="EditTextNOBG">#00000000</color>
     <color name="transparenteColor">#4D000000</color>

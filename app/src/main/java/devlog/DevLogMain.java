@@ -129,6 +129,15 @@ public class DevLogMain extends Fragment {
             }
         });
 
+        vm.getDevlogborradoMutableLiveData().observe(getViewLifecycleOwner(), new Observer<DevLog>() {
+            @Override
+            public void onChanged(DevLog devLog) {
+
+                Toast.makeText(getContext(), "Devlog Borrado", Toast.LENGTH_SHORT).show();
+
+                Navigation.findNavController(root).navigate(R.id.nav_home);
+            }
+        });
         return root;
     }
 
@@ -192,7 +201,10 @@ public class DevLogMain extends Fragment {
 
             final int iddevlog = devlog.getIdDevlog();
 
+            Button btnBorrar = itemView.findViewById(R.id.btnBorrarDevLog);
+
             tvTitulo.setText(devlog.getTitulo());
+
 
             if(actualizable)
             {
@@ -207,6 +219,14 @@ public class DevLogMain extends Fragment {
                         bundle.putInt("id", devlog.getIdDevlog());
 
                         Navigation.findNavController(v).navigate(R.id.actualizarDevlog, bundle);
+                    }
+                });
+
+                btnBorrar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        vm.borrarDevlog(devlog.getIdDevlog(),getContext());
                     }
                 });
             }

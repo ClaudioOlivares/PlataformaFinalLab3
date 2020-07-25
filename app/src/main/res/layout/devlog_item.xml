@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="130dp"
         android:layout_marginTop="48dp"
-        android:backgroundTint="#fbbed1"
+        android:backgroundTint="#E4A99E"
         android:backgroundTintMode="multiply"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,12 +32,23 @@
 
     <Button
         android:id="@+id/btnActualizarDevlog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="98dp"
+        android:layout_height="45dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:text="Actualizar"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/ivImagenDevLog" />
+
+    <Button
+        android:id="@+id/btnBorrarDevLog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Borrar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.953"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnActualizarDevlog" />
 </androidx.constraintlayout.widget.ConstraintLayout>

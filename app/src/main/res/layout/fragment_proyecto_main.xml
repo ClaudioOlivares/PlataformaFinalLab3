@@ -8,6 +8,7 @@
     android:layout_centerHorizontal="true"
     android:focusableInTouchMode="false"
     android:focusedByDefault="false"
+    android:background="@drawable/image222223333"
     tools:context="proyecto.ProyectoMain">
 
 
@@ -42,6 +43,7 @@
                 android:fontFamily="@font/montheavydemo"
                 android:inputType="text|textMultiLine"
                 android:textAlignment="center"
+                android:textColor="#FFFFFF"
                 android:textSize="29sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/ivPortadaProyectoMain" />
@@ -61,16 +63,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
-                android:background="#00000000"
+                android:background="@drawable/rectangle_shape"
 
                 android:editable="false"
                 android:elevation="1dp"
                 android:ems="10"
                 android:enabled="false"
-                android:fontFamily="@font/montheavydemo"
+                android:fontFamily="@font/roboto_medium"
                 android:inputType="text|textMultiLine"
-                android:textColor="#000000"
-                android:textSize="15sp"
+                android:textColor="#3C0733"
+                android:textSize="17sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/carouselView" />
 
@@ -79,16 +81,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="200dp"
-                android:background="#00000000"
+                android:background="@drawable/rectangle_shape"
+
                 android:editable="false"
                 android:elevation="1dp"
                 android:ems="10"
                 android:enabled="false"
 
-                android:fontFamily="@font/montheavydemo"
+                android:fontFamily="@font/roboto_medium"
                 android:inputType="text|textMultiLine"
-                android:textColor="#000000"
-                android:textSize="15sp"
+                android:textColor="#3C0733"
+                android:textSize="17sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ivPortadaProyectoMain" />
 
@@ -100,7 +103,7 @@
                 android:layout_marginTop="28dp"
                 android:text="Creador :"
                 android:textAlignment="textStart"
-                android:textColor="#000000"
+                android:textColor="#3C0733"
                 android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ivPortadaProyectoMain" />
@@ -113,7 +116,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Genero :"
                 android:textAlignment="textStart"
-                android:textColor="#000000"
+                android:textColor="#3C0733"
                 android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -126,7 +129,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Status :"
                 android:textAlignment="textStart"
-                android:textColor="#000000"
+                android:textColor="#3C0733"
                 android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
@@ -139,7 +142,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Plataforma :"
                 android:textAlignment="textStart"
-                android:textColor="#000000"
+                android:textColor="#3C0733"
                 android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
@@ -154,7 +157,7 @@
                 android:enabled="false"
                 android:inputType="text|textMultiLine"
                 android:textAlignment="textStart"
-                android:textColor="#000000"
+                android:textColor="#3C0733"
                 android:textSize="14sp"
                 android:visibility="visible"
                 app:layout_constraintStart_toEndOf="@+id/textView11"
@@ -170,7 +173,7 @@
                 android:enabled="false"
                 android:inputType="text|textMultiLine"
                 android:textAlignment="textStart"
-                android:textColor="#000000"
+                android:textColor="#3C0733"
                 android:textSize="14sp"
                 android:visibility="visible"
                 app:layout_constraintStart_toEndOf="@+id/textView9"
@@ -186,7 +189,7 @@
                 android:enabled="false"
                 android:inputType="text|textMultiLine"
                 android:textAlignment="textStart"
-                android:textColor="#000000"
+                android:textColor="#3C0733"
                 android:textSize="14sp"
                 android:visibility="visible"
                 app:layout_constraintStart_toEndOf="@+id/textView8"
@@ -202,7 +205,7 @@
                 android:enabled="false"
                 android:inputType="text|textMultiLine"
                 android:textAlignment="textStart"
-                android:textColor="#000000"
+                android:textColor="#3C0733"
                 android:textSize="14sp"
                 android:visibility="visible"
                 app:layout_constraintStart_toEndOf="@+id/textView10"

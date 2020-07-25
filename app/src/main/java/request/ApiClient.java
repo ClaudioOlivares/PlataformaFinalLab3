@@ -117,7 +117,8 @@ public class ApiClient {
              @POST("DevLog")
              Call<DevLog> crearDevlog (@Header("Authorization") String token, @Body DevLog devlog);
 
-
+            @DELETE("DevLog/{id}")
+            Call<DevLog> BorrarDevlog(@Header("Authorization") String token,@Path("id")int id);
 
 
 
@@ -137,6 +138,9 @@ public class ApiClient {
 
             @POST("DevLogItem")
             Call<DevLogItem> crearDevlogItem (@Header("Authorization") String token, @Body DevLogItem devlog);
+
+            @DELETE("DevLogItem/{id}")
+            Call<DevLogItem> BorrarDevlogItem(@Header("Authorization") String token,@Path("id")int id);
 
 
 

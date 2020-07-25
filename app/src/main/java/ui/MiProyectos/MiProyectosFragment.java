@@ -70,8 +70,11 @@ public class MiProyectosFragment extends Fragment {
              public void onChanged(List<Proyecto> proyectos)
              {
                  list = proyectos;
+                 if(list.size()!= 0)
+                 {
+                     generarVista();
 
-                 generarVista();
+                 }
              }
          });
 

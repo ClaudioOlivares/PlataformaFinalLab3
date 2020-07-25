@@ -619,9 +619,9 @@ public class ProyectoMain extends Fragment {
 
                 status.setBackgroundResource(R.color.EditTextNOBG);
 
-                textoCompleto.setBackgroundResource(R.color.EditTextNOBG);
+                textoCompleto.setBackgroundResource(R.drawable.rectangle_shape);
 
-                textoResumen.setBackgroundResource(R.color.EditTextNOBG);
+                textoResumen.setBackgroundResource(R.drawable.rectangle_shape);
 
                 titulo.setBackgroundResource(R.color.EditTextNOBG);
 

@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -86,13 +87,20 @@ public class DevlogItemfragment extends Fragment {
                    lista = devLogItems;
 
 
-
-
-             //      titulo.setText(devLogItems.get(0).getDevLog().getTitulo());
-
                    generarVista();
 
                }
+
+           }
+       });
+
+       vm.getdevlogitemborradoMutableLiveData().observe(getViewLifecycleOwner(), new Observer<DevLogItem>() {
+           @Override
+           public void onChanged(DevLogItem devLogItem)
+           {
+               Toast.makeText(getContext(), "item de devlog borrado", Toast.LENGTH_SHORT).show();
+
+               Navigation.findNavController(root).navigate(R.id.nav_home);
 
            }
        });
@@ -161,6 +169,8 @@ public class DevlogItemfragment extends Fragment {
 
             Button btnActualizar;
 
+            Button btnBorrar;
+
             btnActualizar = itemView.findViewById(R.id.btnActualizarITEMDEVLOG);
 
             ImageView iv = itemView.findViewById(R.id.ivDevlogitemITEM);
@@ -175,9 +185,13 @@ public class DevlogItemfragment extends Fragment {
 
             texto.setText(dvi.getTexto());
 
+            btnBorrar = itemView.findViewById(R.id.btnBorrarITEMDEVLOG);
+
             if(actualizar)
             {
                 btnActualizar.setVisibility(View.VISIBLE);
+
+                btnBorrar.setVisibility(View.VISIBLE);
             }
 
             pathCompleto = ap.getPATHRECURSOS() + dvi.getMultimedia();
@@ -196,6 +210,15 @@ public class DevlogItemfragment extends Fragment {
                 }
             });
 
+            btnBorrar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    vm.borrarDevLogItem(getContext(),dvi.getIdDevlogItem());
+
+
+                }
+            });
 
             return itemView;
         }

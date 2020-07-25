@@ -37,6 +37,8 @@ public class DevlogItemViewModel extends ViewModel
 
     private MutableLiveData<DevLogItem> devlogitemcreadoMutableLiveData;
 
+    private MutableLiveData<DevLogItem> devlogitemborradoMutableLiveData;
+
     public DevlogItemViewModel()
     {
 
@@ -88,6 +90,14 @@ public class DevlogItemViewModel extends ViewModel
         return devlogitemcreadoMutableLiveData;
     }
 
+    public LiveData<DevLogItem> getdevlogitemborradoMutableLiveData()
+    {
+        if(devlogitemborradoMutableLiveData == null)
+        {
+            devlogitemborradoMutableLiveData = new MutableLiveData<>();
+        }
+        return devlogitemborradoMutableLiveData;
+    }
 
     public void traerDevlogsitems(final Context ctx, int id)
     {
@@ -290,7 +300,38 @@ public class DevlogItemViewModel extends ViewModel
 
     }
 
+    public void borrarDevLogItem(final Context ctx, int id)
+    {
+        String token = "Bearer " + sp.leerToken(ctx);
 
+        Call<DevLogItem> res = ApiClient.getMyApiClient().BorrarDevlogItem(token,id);
+
+        res.enqueue(new Callback<DevLogItem>() {
+            @Override
+            public void onResponse(Call<DevLogItem> call, Response<DevLogItem> response)
+            {
+                if(response.isSuccessful())
+                {
+                    devlogitemborradoMutableLiveData.setValue(response.body());
+                }
+                else
+                {
+                    try
+                    {
+                        Toast.makeText(ctx, response.errorBody().string() + "ASD3", Toast.LENGTH_SHORT).show();
+                    } catch (IOException e)
+                    {
+                        Toast.makeText(ctx, e.getMessage() + "ASD 2", Toast.LENGTH_SHORT).show();;
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DevLogItem> call, Throwable t) {
+                Toast.makeText(ctx, t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
 
 
