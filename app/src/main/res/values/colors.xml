@@ -8,4 +8,8 @@
     <color name ="Rosabase">#fbbed1</color>
     <color name = "transparentetotal">#00000000</color>
     <drawable name="transperent">#00000000</drawable>
+    <color name="colorFont">#3C0733</color>
+    <color  name="accept">#c0f9ba</color>
+    <color name="cancel">#ff8d8f</color>
+    <color name="base">#f9d0ba</color>
 </resources>

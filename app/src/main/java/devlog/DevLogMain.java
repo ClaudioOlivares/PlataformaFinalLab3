@@ -149,7 +149,7 @@ public class DevLogMain extends Fragment {
 
       lv.setDivider(this.getResources().getDrawable(R.drawable.transperent));
 
-      lv.setDividerHeight(18);
+      lv.setDividerHeight(4);
 
       lv.setAdapter(adapter);
   }

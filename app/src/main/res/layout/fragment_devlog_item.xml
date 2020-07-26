@@ -3,14 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/image222223333"
     android:layout_height="match_parent"
     tools:context="DevlogItem.DevlogItemfragment" >
 
     <Button
         android:id="@+id/btnCreadDevLogITEM"
-        android:layout_width="wrap_content"
+
+        style="@style/BotonesNormal"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/botones"
         android:text="Crear Item"
+        android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

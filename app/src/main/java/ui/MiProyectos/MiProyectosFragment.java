@@ -108,7 +108,7 @@ public class MiProyectosFragment extends Fragment {
 
         lvMisProyectos.setDivider(this.getResources().getDrawable(R.drawable.transperent));
 
-        lvMisProyectos.setDividerHeight(18);
+        lvMisProyectos.setDividerHeight(3);
 
         lvMisProyectos.setAdapter(adapter);
 

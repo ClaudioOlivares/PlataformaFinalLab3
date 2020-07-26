@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.Toast;
@@ -57,7 +58,8 @@ public class ProyectoMain extends Fragment {
     private CarouselView carouselView;
     private EditText textoCompleto, titulo, textoResumen,creador,status,genero,plataforma;
     private ApiClient ap;
-    private Button btnDevlogs, btnActualizar, btnAceptarActualizar, btnCancelarActualizacion;
+    private ImageButton btnAceptarActualizar, btnCancelarActualizacion;
+    private Button  btnDevlogs, btnActualizar;
 
 
 

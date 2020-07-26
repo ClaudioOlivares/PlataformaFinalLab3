@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/image222223333"
     tools:context="DevlogItem.ActualizarCrearDevLogItem" >
 
     <androidx.core.widget.NestedScrollView
@@ -21,10 +22,10 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="176dp"
+                android:layout_marginStart="188dp"
                 android:layout_marginTop="16dp"
                 android:text="Titulo"
-                android:textColor="#000000"
+                android:textColor="@color/colorFont"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,7 +41,7 @@
                 android:fontFamily="@font/montheavydemo"
                 android:inputType="text|textMultiLine"
                 android:textAlignment="center"
-                android:textColor="#000000"
+                android:textColor="@color/colorFont"
                 android:textSize="38sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -53,9 +54,10 @@
                 android:layout_marginTop="28dp"
                 android:background="#00000000"
                 android:editable="true"
+                android:fontFamily="@font/roboto_medium"
                 android:inputType="text|textMultiLine"
                 android:textAlignment="textStart"
-                android:textColor="#000000"
+                android:textColor="@color/colorFont"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -66,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
                 android:text="Resumen"
-                android:textColor="#000000"
+                android:textColor="@color/colorFont"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etTituloCrearActualizarDLITEM" />
@@ -85,7 +87,9 @@
                 android:id="@+id/btnActualizarCrearDLITEM"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="160dp"
+                android:background="@drawable/botones"
+                style="@style/BotonesNormal"
+                android:layout_marginStart="168dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="32dp"
                 android:text="Hecho"

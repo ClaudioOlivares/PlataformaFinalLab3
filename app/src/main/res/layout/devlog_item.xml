@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="130dp"
         android:layout_marginTop="48dp"
-        android:backgroundTint="#E4A99E"
+        android:backgroundTint="#CC7A96"
         android:backgroundTintMode="multiply"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,8 +25,9 @@
         android:layout_marginTop="44dp"
         android:elevation="8dp"
         android:fontFamily="@font/montheavydemo"
+
         android:textColor="#FFFFFF"
-        android:textSize="25sp"
+        android:textSize="37sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/ivImagenDevLog" />
 
@@ -36,6 +37,9 @@
         android:layout_height="45dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
+        style="@style/BotonesNormal"
+        android:background="@drawable/botones"
+        android:textAlignment="center"
         android:text="Actualizar"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +50,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        style="@style/BotonesNormal"
+        android:background="@drawable/botones"
         android:text="Borrar"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.953"
         app:layout_constraintStart_toStartOf="parent"
