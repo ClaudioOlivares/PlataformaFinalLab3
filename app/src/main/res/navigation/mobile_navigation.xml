@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="ui.MiProyectos.MiProyectosFragment"
-        android:label="@string/menu_home"
+        android:label="Mis Proyectos"
         tools:layout="@layout/fragment_miproyectos">
         <action
             android:id="@+id/action_nav_home_to_proyectoMain"
@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/nav_gallery"
         android:name="ui.miperfil.MiPerfilFragment"
-        android:label="@string/menu_gallery"
+        android:label="Mi Perfil"
         tools:layout="@layout/fragment_miperfil" />
 
     <fragment
@@ -32,7 +32,7 @@
     <fragment
         android:id="@+id/proyectoMain"
         android:name="proyecto.ProyectoMain"
-        android:label="fragment_proyecto_main"
+        android:label="Proyecto"
         tools:layout="@layout/fragment_proyecto_main" >
         <action
             android:id="@+id/action_proyectoMain_to_devLogMain"
@@ -44,7 +44,7 @@
     <fragment
         android:id="@+id/devLogMain"
         android:name="devlog.DevLogMain"
-        android:label="fragment_dev_log_main"
+        android:label="Devlogs"
         tools:layout="@layout/fragment_dev_log_main" >
         <action
             android:id="@+id/action_devLogMain_to_devlogItem"
@@ -56,8 +56,8 @@
     <fragment
         android:id="@+id/devlogItem"
         android:name="DevlogItem.DevlogItemfragment"
-        android:label="fragment_devlog_item"
-        tools:layout="@layout/fragment_devlog_item" >
+        android:label="Devlog"
+        tools:layout="Notas Devlog" >
         <action
             android:id="@+id/action_devlogItem_to_actualizarCrearDevLogItem"
             app:destination="@id/actualizarCrearDevLogItem" />
@@ -65,7 +65,7 @@
     <fragment
         android:id="@+id/actualizarDevlog"
         android:name="devlog.ActualizarCrearDevlog"
-        android:label="fragment_actualizar_devlog"
+        android:label="Actualizar/Crear Devlog"
         tools:layout="@layout/fragment_actualizar_devlog" >
         <action
             android:id="@+id/action_actualizarDevlog_pop"
@@ -76,11 +76,11 @@
     <fragment
         android:id="@+id/actualizarCrearDevLogItem"
         android:name="DevlogItem.ActualizarCrearDevLogItem"
-        android:label="fragment_actualizar_crear_dev_log_item"
+        android:label="Actualizar/Crear Nota Devlog"
         tools:layout="@layout/fragment_actualizar_crear_dev_log_item" />
     <fragment
         android:id="@+id/crearProyecto"
         android:name="proyecto.CrearProyecto"
-        android:label="fragment_crear_proyecto"
+        android:label="Crear Proyecto"
         tools:layout="@layout/fragment_crear_proyecto" />
 </navigation>

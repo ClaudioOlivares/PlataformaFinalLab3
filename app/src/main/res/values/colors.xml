@@ -12,4 +12,6 @@
     <color  name="accept">#c0f9ba</color>
     <color name="cancel">#ff8d8f</color>
     <color name="base">#f9d0ba</color>
+    <color name="rosaOscuro">#a85873</color>
+    <color name="rosaMasOscuro">#9F4F62</color>
 </resources>

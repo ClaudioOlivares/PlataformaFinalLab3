@@ -24,8 +24,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="188dp"
                 android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto_medium"
                 android:text="Titulo"
                 android:textColor="@color/colorFont"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,8 +69,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
+                android:fontFamily="@font/roboto_medium"
                 android:text="Resumen"
                 android:textColor="@color/colorFont"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etTituloCrearActualizarDLITEM" />
@@ -78,24 +82,26 @@
                 android:layout_width="375dp"
                 android:layout_height="275dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="24dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvTextoCrearActualizarDLITEM"
                 app:srcCompat="@drawable/ic_menu_gallery" />
 
             <Button
                 android:id="@+id/btnActualizarCrearDLITEM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/botones"
                 style="@style/BotonesNormal"
-                android:layout_marginStart="168dp"
-                android:layout_marginTop="32dp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="110dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginBottom="32dp"
+                android:background="@drawable/botones"
                 android:text="Hecho"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivCrearActualizarDLITEM" />
+                app:layout_constraintTop_toBottomOf="@+id/ivCrearActualizarDLITEM"
+                app:layout_constraintVertical_bias="1.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
